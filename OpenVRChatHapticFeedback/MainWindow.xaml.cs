@@ -19,7 +19,7 @@ namespace OpenVRChatHapticFeedback
 {
     public partial class MainWindow : Window
     {
-        private static Mutex _mutex = null;
+        //private static Mutex _mutex = null;
         private readonly static string DEFAULT_KEY_LABEL = "Unbound: Click to bind keys to simulate";
         private MainController _controller;
         private List<BindingItem> _items = new List<BindingItem>();
@@ -38,13 +38,17 @@ namespace OpenVRChatHapticFeedback
 
         public MainWindow()
         {
+            if (!System.IO.File.Exists("actions.json"))
+			{
+                System.IO.File.WriteAllText("actions.json", "{ \"default_bindings\": [ { \"controller_type\": \"knuckles\", \"binding_url\": \"bindings_knuckles.json\" }, { \"controller_type\": \"vive_controller\", \"binding_url\": \"bindings_vive_controller.json\" }, { \"controller_type\": \"oculus_touch\", \"binding_url\": \"bindings_oculus_touch.json\" }, { \"controller_type\": \"vive_tracker_chest\", \"binding_url\": \"bindings_vive_tracker_chest.json\" }, { \"controller_type\": \"vive_tracker_left_elbow\", \"binding_url\": \"bindings_vive_tracker_left_elbow.json\" }, { \"controller_type\": \"vive_tracker_right_elbow\", \"binding_url\": \"bindings_vive_tracker_right_elbow.json\" }, { \"controller_type\": \"vive_tracker_waist\", \"binding_url\": \"bindings_vive_tracker_waist.json\" }, { \"controller_type\": \"vive_tracker_left_knee\", \"binding_url\": \"bindings_vive_tracker_left_knee.json\" }, { \"controller_type\": \"vive_tracker_right_knee\", \"binding_url\": \"bindings_vive_tracker_right_knee.json\" }, { \"controller_type\": \"vive_tracker_left_foot\", \"binding_url\": \"bindings_vive_tracker_left_foot.json\" }, { \"controller_type\": \"vive_tracker_right_foot\", \"binding_url\": \"bindings_vive_tracker_right_foot.json\" } ], \"actions\": [ { \"name\": \"/actions/keys/in/KeyL1\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL2\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL3\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL4\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL5\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL6\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL7\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL8\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL9\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL10\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL11\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL12\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL13\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL14\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL15\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyL16\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR1\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR2\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR3\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR4\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR5\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR6\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR7\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR8\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR9\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR10\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR11\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR12\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR13\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR14\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR15\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyR16\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC1\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC2\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC3\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC4\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC5\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC6\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC7\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC8\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC9\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC10\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC11\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC12\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC13\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC14\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC15\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyC16\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT1\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT2\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT3\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT4\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT5\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT6\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT7\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT8\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT9\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT10\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT11\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT12\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT13\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT14\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT15\", \"requirement\": \"optional\", \"type\": \"boolean\" }, { \"name\": \"/actions/keys/in/KeyT16\", \"requirement\": \"optional\", \"type\": \"boolean\" } ], \"action_sets\": [ { \"name\": \"/actions/keys\", \"usage\": \"leftright\" } ], \"localization\" : [ { \"language_tag\": \"en_US\", \"/actions/keys\": \"Keys\", \"/actions/keys/in/KeyL1\": \"Key Left 1\", \"/actions/keys/in/KeyL2\": \"Key Left 2\", \"/actions/keys/in/KeyL3\": \"Key Left 3\", \"/actions/keys/in/KeyL4\": \"Key Left 4\", \"/actions/keys/in/KeyL5\": \"Key Left 5\", \"/actions/keys/in/KeyL6\": \"Key Left 6\", \"/actions/keys/in/KeyL7\": \"Key Left 7\", \"/actions/keys/in/KeyL8\": \"Key Left 8\", \"/actions/keys/in/KeyL9\": \"Key Left 9\", \"/actions/keys/in/KeyL10\": \"Key Left 10\", \"/actions/keys/in/KeyL11\": \"Key Left 11\", \"/actions/keys/in/KeyL12\": \"Key Left 12\", \"/actions/keys/in/KeyL13\": \"Key Left 13\", \"/actions/keys/in/KeyL14\": \"Key Left 14\", \"/actions/keys/in/KeyL15\": \"Key Left 15\", \"/actions/keys/in/KeyL16\": \"Key Left 16\", \"/actions/keys/in/KeyR1\": \"Key Right 1\", \"/actions/keys/in/KeyR2\": \"Key Right 2\", \"/actions/keys/in/KeyR3\": \"Key Right 3\", \"/actions/keys/in/KeyR4\": \"Key Right 4\", \"/actions/keys/in/KeyR5\": \"Key Right 5\", \"/actions/keys/in/KeyR6\": \"Key Right 6\", \"/actions/keys/in/KeyR7\": \"Key Right 7\", \"/actions/keys/in/KeyR8\": \"Key Right 8\", \"/actions/keys/in/KeyR9\": \"Key Right 9\", \"/actions/keys/in/KeyR10\": \"Key Right 10\", \"/actions/keys/in/KeyR11\": \"Key Right 11\", \"/actions/keys/in/KeyR12\": \"Key Right 12\", \"/actions/keys/in/KeyR13\": \"Key Right 13\", \"/actions/keys/in/KeyR14\": \"Key Right 14\", \"/actions/keys/in/KeyR15\": \"Key Right 15\", \"/actions/keys/in/KeyR16\": \"Key Right 16\", \"/actions/keys/in/KeyC1\": \"Key Chord 1\", \"/actions/keys/in/KeyC2\": \"Key Chord 2\", \"/actions/keys/in/KeyC3\": \"Key Chord 3\", \"/actions/keys/in/KeyC4\": \"Key Chord 4\", \"/actions/keys/in/KeyC5\": \"Key Chord 5\", \"/actions/keys/in/KeyC6\": \"Key Chord 6\", \"/actions/keys/in/KeyC7\": \"Key Chord 7\", \"/actions/keys/in/KeyC8\": \"Key Chord 8\", \"/actions/keys/in/KeyC9\": \"Key Chord 9\", \"/actions/keys/in/KeyC10\": \"Key Chord 10\", \"/actions/keys/in/KeyC11\": \"Key Chord 11\", \"/actions/keys/in/KeyC12\": \"Key Chord 12\", \"/actions/keys/in/KeyC13\": \"Key Chord 13\", \"/actions/keys/in/KeyC14\": \"Key Chord 14\", \"/actions/keys/in/KeyC15\": \"Key Chord 15\", \"/actions/keys/in/KeyC16\": \"Key Chord 16\", \"/actions/keys/in/KeyT1\": \"Key Tracker 1\", \"/actions/keys/in/KeyT2\": \"Key Tracker 2\", \"/actions/keys/in/KeyT3\": \"Key Tracker 3\", \"/actions/keys/in/KeyT4\": \"Key Tracker 4\", \"/actions/keys/in/KeyT5\": \"Key Tracker 5\", \"/actions/keys/in/KeyT6\": \"Key Tracker 6\", \"/actions/keys/in/KeyT7\": \"Key Tracker 7\", \"/actions/keys/in/KeyT8\": \"Key Tracker 8\", \"/actions/keys/in/KeyT9\": \"Key Tracker 9\", \"/actions/keys/in/KeyT10\": \"Key Tracker 10\", \"/actions/keys/in/KeyT11\": \"Key Tracker 11\", \"/actions/keys/in/KeyT12\": \"Key Tracker 12\", \"/actions/keys/in/KeyT13\": \"Key Tracker 13\", \"/actions/keys/in/KeyT14\": \"Key Tracker 14\", \"/actions/keys/in/KeyT15\": \"Key Tracker 15\", \"/actions/keys/in/KeyT16\": \"Key Tracker 16\" } ]}");
+			}
             InitWindow();
             InitializeComponent();
             //Title = Properties.Resources.AppName;
 
             // Prevent multiple instances running at once
-            _mutex = new Mutex(true, Properties.Resources.AppName, out bool createdNew);
-            if (!createdNew)
+            //_mutex = new Mutex(true, Properties.Resources.AppName, out bool createdNew);
+            /*if (!createdNew)
             {
                 MessageBox.Show(
                     Application.Current.MainWindow,
@@ -54,7 +58,7 @@ namespace OpenVRChatHapticFeedback
                     MessageBoxImage.Information
                 );
                 Application.Current.Shutdown();
-            }
+            }*/
 
 
             _controller = new MainController
@@ -96,7 +100,7 @@ namespace OpenVRChatHapticFeedback
                 },
 
                 // We should update the text on the current binding we are recording
-                KeyTextUpdateAction = (keyText, cancel) =>
+                /*KeyTextUpdateAction = (keyText, cancel) =>
                 {
                     Debug.WriteLine($"Key Text Update Action: keyText={keyText}");
                     Dispatcher.Invoke(() =>
@@ -107,8 +111,8 @@ namespace OpenVRChatHapticFeedback
                             if (cancel) UpdateLabel(_activeElement as Label, false);
                         }
                     });
-                },
-
+                },*/
+                
                 // We have loaded a config
                 ConfigRetrievedAction = (config, forceButtonOff) =>
                 {
@@ -119,7 +123,7 @@ namespace OpenVRChatHapticFeedback
                         if (loaded) InitList(config);
                     });
                 },
-
+                /*
                 KeyActivatedAction = (key, on) =>
                 {
                     Dispatcher.Invoke(() =>
@@ -137,7 +141,7 @@ namespace OpenVRChatHapticFeedback
                     {
                         _dashboardIsVisible = visible;
                     });
-                }
+                }*/
             };
 
             // Receives error messages from OpenVR
@@ -331,27 +335,9 @@ namespace OpenVRChatHapticFeedback
 
         #endregion
 
-        #region actions
-
-
-        private void Button_Folder_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.OpenConfigFolder();
-        }
-        #endregion
 
         #region bindings
         // Main action that is clicked from the list to start and end registration of keys
-        private void Label_RecordSave_Click(object sender, MouseButtonEventArgs e)
-        {
-            var element = sender as Label;
-            var dataItem = element.DataContext as BindingItem;
-            var active = _controller.ToggleRegisteringKey(dataItem.Key, element, out object activeElement);
-            UpdateLabel(activeElement as Label, active);
-            if (active) _activeElement = activeElement;
-            else _activeElement = null;
-        }
-
         private void UpdateLabel(Label label, bool active)
         {
             {
@@ -359,27 +345,6 @@ namespace OpenVRChatHapticFeedback
                 label.BorderBrush = active ? Brushes.Tomato : Brushes.DarkGray;
                 label.Background = active ? Brushes.LightPink : Brushes.LightGray;
             }
-        }
-
-        private void Label_HighlightOn(object sender, RoutedEventArgs e)
-        {
-            if (_activeElement != sender) (sender as Label).Background = Brushes.WhiteSmoke;
-        }
-
-        private void Label_HighlightOff(object sender, RoutedEventArgs e)
-        {
-            if (_activeElement != sender) (sender as Label).Background = Brushes.LightGray;
-        }
-
-        // Clear the current binding
-        private void Button_ClearCancel_Click(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            var dataItem = button.DataContext as BindingItem;
-            MainModel.RemoveBinding(dataItem.Key);
-            DockPanel sp = VisualTreeHelper.GetParent(button) as DockPanel;
-            var element = sp.Children[2] as Label;
-            element.Content = DEFAULT_KEY_LABEL;
         }
         #endregion
 
@@ -452,8 +417,8 @@ namespace OpenVRChatHapticFeedback
 
                 GbTwitch.Header = "Twitch settings";
                 LabelChannelName.Content = "Channel name";
-                LabelFeedbackBy.Content = "Haptic BY";
-                LabelFeedbackType.Content = "Haptic TYPE";
+                LabelFeedbackBy.Content = "Haptic by";
+                LabelFeedbackType.Content = "Haptic type";
                 LabelWhichController.Content = "On controller";
                 TwitchTestButton.Content = "TEST";
                 ButtonConnect.Content = "Save & connect";
@@ -466,6 +431,22 @@ namespace OpenVRChatHapticFeedback
 
                 GbLog.Header = "Log";
                 cbShowMessages.Content = "Show messages in log";
+
+                var sel = ComboBoxFeedbackBy.SelectedIndex;
+                ComboBoxFeedbackBy.Items.Clear();
+                ComboBoxFeedbackBy.Items.Add("All messages");
+                ComboBoxFeedbackBy.Items.Add("Subscribers");
+                ComboBoxFeedbackBy.Items.Add("Moderators");
+                ComboBoxFeedbackBy.Items.Add("!hey");
+                ComboBoxFeedbackBy.Items.Add("Not notify me");
+                ComboBoxFeedbackBy.SelectedIndex = sel;
+
+                sel = ComboBoxWhichController.SelectedIndex;
+                ComboBoxWhichController.Items.Clear();
+                ComboBoxWhichController.Items.Add("Left");
+                ComboBoxWhichController.Items.Add("Right");
+                ComboBoxWhichController.Items.Add("Both");
+                ComboBoxWhichController.SelectedIndex = sel;
             } 
             else
             {
@@ -496,6 +477,22 @@ namespace OpenVRChatHapticFeedback
 
                 GbLog.Header = "Лог";
                 cbShowMessages.Content = "Показать сообщения в логе";
+
+                var sel = ComboBoxFeedbackBy.SelectedIndex;
+                ComboBoxFeedbackBy.Items.Clear();
+                ComboBoxFeedbackBy.Items.Add("Все сообщения");
+                ComboBoxFeedbackBy.Items.Add("Подписчики");
+                ComboBoxFeedbackBy.Items.Add("Модераторы");
+                ComboBoxFeedbackBy.Items.Add("!hey");
+                ComboBoxFeedbackBy.Items.Add("Не оповещать");
+                ComboBoxFeedbackBy.SelectedIndex = sel;
+
+                sel = ComboBoxWhichController.SelectedIndex;
+                ComboBoxWhichController.Items.Clear();
+                ComboBoxWhichController.Items.Add("Левый");
+                ComboBoxWhichController.Items.Add("Правый");
+                ComboBoxWhichController.Items.Add("Оба");
+                ComboBoxWhichController.SelectedIndex = sel;
             }
 		}
 

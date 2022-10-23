@@ -1,6 +1,6 @@
 {
 	"applications": [{
-		"app_key": "boll7708.openvr2key",
+		"app_key": "boll7708.openvrchathapticfeedback",
 		"launch_type": "binary",
 		"binary_path_windows": "OpenVRChatHapticFeedback.exe",
 		"is_dashboard_overlay": true,

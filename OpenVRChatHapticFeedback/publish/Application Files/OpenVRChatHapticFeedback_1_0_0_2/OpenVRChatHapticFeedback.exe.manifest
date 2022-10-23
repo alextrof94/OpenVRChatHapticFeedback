@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="OpenVRChatHapticFeedback.exe" version="1.0.0.2" publicKeyToken="1b548588ef53c7ce" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="ChatHapticFeedback.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="OpenVRChatHapticFeedback" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="OpenVRChatHapticFeedback.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Параметры манифеста UAC
+          Если нужно изменить уровень контроля учетных записей Windows, замените 
+          узел requestedExecutionLevel одним из следующих значений.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+        Если нужно использовать виртуализацию файлов и реестра для обратной
+             совместимости, удалите узел requestedExecutionLevel.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OpenVRChatHapticFeedback.exe" size="3154912">
+      <assemblyIdentity name="OpenVRChatHapticFeedback" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>bDus2bOUWFu4jAOf6LAh7UVLCu+MU21bXBtuItfqDKk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="ChatHapticFeedback.ico" size="124615">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>LSTvAc+om4X2C+7R+KnFTVyIOKIGzZtXxnl5mLj9dKU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="OpenVRChatHapticFeedback.exe.config" size="2697">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>HposuY0AdDBYKaT9WQJPspbLfvnm/30TXjO9/pLjy0Y=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-LBC7JJ3\alext" issuerKeyHash="1ab288e318e7fa55dbae80cb76cbf28ba592b5de" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>9yFcVUMGMu1ZSxKZmMI8/m0re5a6TvjMpEiojDLImco=</DigestValue></Reference></SignedInfo><SignatureValue>PrE64pQlLPzCgH0TXrQ7pTsB+s6mCbogDVNKehbwPX2DLeGPQA6sJ4qHV0wQ/7Kb45SYHHD1pMjXh23nMTb5Ihs/ZwOJg3xyfmVLbWdTsSRaGNZ9CANPAX+/st549Xq3kUkegoK/dM8r5jcurrDaPVSWa3zyOHpVfLVchdnlTbk=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>vXehPgEOYeXeV1Tfnbg5dDn0JXjd20Qd2TjgGWTyJQDsrwr+jxoh38gGDva0CnGj2A8fEZZLdHJc1Jf9ohv5fSsYYyvUs92AcqyOH2bldzF6xMKn+MIUWUevNnSA/uAKJgfCc7R5/7CcJgx1wbfuxTexv+4iQ1wAahVjPtSM/IE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="ca99c8328ca848a4ccf84eba967b2b6dfe3cc29899124b59ed320643555c21f7" Description="" Url=""><as:assemblyIdentity name="OpenVRChatHapticFeedback.exe" version="1.0.0.2" publicKeyToken="1b548588ef53c7ce" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-LBC7JJ3\alext</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>0Xyb9153l42AZKIyc72ZLirBBOABhTRMONsUIROOH7c=</DigestValue></Reference></SignedInfo><SignatureValue>aHcUZwzuPOTJ+ZJbStwNBjuo4XR+J2z+d2nwn2mPX5djDEvBhj5vzsFo4+YvSalxSqtT09V3EuLZqz/lsOKz7nV1u8OaUz07VZNzPR+DHQLqbMMOVTyIRqDi1Fyt6t12S/jECpWIwl6Z5+hiot4YXkSPSoZzzqZnp+O5M3IQdHQ=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>vXehPgEOYeXeV1Tfnbg5dDn0JXjd20Qd2TjgGWTyJQDsrwr+jxoh38gGDva0CnGj2A8fEZZLdHJc1Jf9ohv5fSsYYyvUs92AcqyOH2bldzF6xMKn+MIUWUevNnSA/uAKJgfCc7R5/7CcJgx1wbfuxTexv+4iQ1wAahVjPtSM/IE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQYcp1D9FKnKdJQO7ni2vAJDANBgkqhkiG9w0BAQsFADA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtAEwAQgBDADcASgBKADMAXABhAGwAZQB4AHQwHhcNMjIxMDIzMDQwNDIxWhcNMjMxMDIzMTAwNDIxWjA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtAEwAQgBDADcASgBKADMAXABhAGwAZQB4AHQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAL13oT4BDmHl3ldU3524OXQ59CV43dtEHdk44Blk8iUA7K8K/o8aId/IBg72tApxo9gPHxGWS3RyXNSX/aIb+X0rGGMr1LPdgHKsjh9m5XcxesTCp/jCFFlHrzZ0gP7gCiYHwnO0ef+wnCYMdcG37sU3sb/uIkNcAGoVYz7UjPyBAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAm9UNweS8bqHzUo7oNDGL8h/Cbzwiy7Nblg5fvHOmIGVWtfSi5IWAZ2K4TvI/QCZBf3XRmQOipE8L2G/Lk8h3EOxfKDU49iAWjrAx8d2U0+zyXM2ePnVcHVAteVL88YdXc7z6TkGJVvGYxitOQebpPFxzT6/qTPDdhEQ9CjP9zmQ=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

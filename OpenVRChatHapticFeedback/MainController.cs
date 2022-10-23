@@ -159,7 +159,7 @@ namespace OpenVRChatHapticFeedback
                     {
                         initComplete = true;
 
-                        _ovr.AddApplicationManifest("./app.vrmanifest", "boll7708.openvr2key", true);
+                        _ovr.AddApplicationManifest("./app.vrmanifest", "boll7708.openvrchathapticfeedback", true);
                         _ovr.LoadActionManifest("./actions.json");
                         RegisterActions();
                         UpdateAppId();
@@ -266,6 +266,7 @@ namespace OpenVRChatHapticFeedback
         public void OpenConfigFolder() // TODO: This refuses to open the right folder so the button is hidden.
         {
             var folderPath = MainModel.GetConfigFolderPath();
+            Debug.WriteLine(folderPath);
             if (Directory.Exists(folderPath))
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo
@@ -274,7 +275,8 @@ namespace OpenVRChatHapticFeedback
                     FileName = "explorer.exe"
                 };
                 Process.Start(startInfo);
-        } else
+            } 
+            else
             {
                 MessageBox.Show("Folder does not exist yet as no config has been saved.");
             }
@@ -297,6 +299,7 @@ namespace OpenVRChatHapticFeedback
         // Action was triggered, handle it
         private void OnAction(string actionKey, InputDigitalActionData_t data, ulong inputSourceHandle)
         {
+            //KeyActivatedAction.Invoke(actionKey, data.bState);
         }
         #endregion
 
@@ -387,25 +390,6 @@ namespace OpenVRChatHapticFeedback
                 subTimer.Stop();
             }
         }
-
-
-		#region keyboard_out
-
-		// Simulate a keyboard press
-		private void SimulateKeyPress(InputDigitalActionData_t data, Tuple<Key[], VirtualKeyCode[], VirtualKeyCode[]> binding)
-        {
-            if (data.bState)
-            {
-                foreach (var vk in binding.Item2) _sim.Keyboard.KeyDown(vk);
-                foreach (var vk in binding.Item3) _sim.Keyboard.KeyDown(vk);
-            }
-            else
-            {
-                foreach (var vk in binding.Item3) _sim.Keyboard.KeyUp(vk);
-                foreach (var vk in binding.Item2) _sim.Keyboard.KeyUp(vk);
-            }
-        }
-        #endregion
     }
 
     public enum ControllerType

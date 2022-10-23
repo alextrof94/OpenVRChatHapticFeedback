@@ -39,3 +39,7 @@ D:\GitHub\OpenVRChatHapticFeedback\OpenVRChatHapticFeedback\bin\Debug\Microsoft.
 D:\GitHub\OpenVRChatHapticFeedback\OpenVRChatHapticFeedback\bin\Debug\Serilog.xml
 D:\GitHub\OpenVRChatHapticFeedback\OpenVRChatHapticFeedback\bin\Debug\Serilog.Extensions.Logging.xml
 D:\GitHub\OpenVRChatHapticFeedback\OpenVRChatHapticFeedback\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\GitHub\OpenVRChatHapticFeedback\OpenVRChatHapticFeedback\bin\Debug\OpenVRChatHapticFeedback.exe.manifest
+D:\GitHub\OpenVRChatHapticFeedback\OpenVRChatHapticFeedback\bin\Debug\OpenVRChatHapticFeedback.application
+D:\GitHub\OpenVRChatHapticFeedback\OpenVRChatHapticFeedback\obj\Debug\OpenVRChatHapticFeedback.exe.manifest
+D:\GitHub\OpenVRChatHapticFeedback\OpenVRChatHapticFeedback\obj\Debug\OpenVRChatHapticFeedback.application
