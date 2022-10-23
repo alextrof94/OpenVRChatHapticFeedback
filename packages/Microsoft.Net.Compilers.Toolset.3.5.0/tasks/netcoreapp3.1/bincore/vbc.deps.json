@@ -1,0 +1,378 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "vbc/3.5.0-beta4-20153-05": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "3.5.0-beta4-20153-05",
+          "Microsoft.CodeAnalysis.VisualBasic": "3.5.0-beta4-20153-05",
+          "Microsoft.CodeQuality.Analyzers": "3.0.0-beta2.20059.3",
+          "Microsoft.DiaSymReader.Native": "1.7.0",
+          "Microsoft.NETFramework.ReferenceAssemblies": "1.0.0-alpha-004",
+          "Microsoft.NetCore.Analyzers": "3.0.0-beta2.20059.3",
+          "Microsoft.SourceLink.GitHub": "1.0.0-beta2-19367-01",
+          "Microsoft.SourceLink.Vsts.Git": "1.0.0-beta2-19367-01",
+          "Microsoft.VisualStudio.Threading.Analyzers": "16.4.16",
+          "Roslyn.Diagnostics.Analyzers": "3.0.0-beta2.20059.3",
+          "System.IO.Pipes.AccessControl": "4.5.1",
+          "XliffTasks": "1.0.0-beta.19252.1"
+        },
+        "runtime": {
+          "vbc.dll": {}
+        }
+      },
+      "Microsoft.Build.Tasks.Git/1.0.0-beta2-19367-01": {},
+      "Microsoft.CodeAnalysis.Analyzers/3.0.0-beta2.20059.3": {},
+      "Microsoft.CodeAnalysis.BannedApiAnalyzers/3.0.0-beta2.20059.3": {},
+      "Microsoft.CodeAnalysis.PublicApiAnalyzers/3.0.0-beta2.20059.3": {},
+      "Microsoft.CodeQuality.Analyzers/3.0.0-beta2.20059.3": {},
+      "Microsoft.DiaSymReader.Native/1.7.0": {},
+      "Microsoft.NetCore.Analyzers/3.0.0-beta2.20059.3": {},
+      "Microsoft.NETCore.Platforms/2.1.2": {},
+      "Microsoft.NETFramework.ReferenceAssemblies/1.0.0-alpha-004": {},
+      "Microsoft.SourceLink.Common/1.0.0-beta2-19367-01": {},
+      "Microsoft.SourceLink.GitHub/1.0.0-beta2-19367-01": {
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "1.0.0-beta2-19367-01",
+          "Microsoft.SourceLink.Common": "1.0.0-beta2-19367-01"
+        }
+      },
+      "Microsoft.SourceLink.Vsts.Git/1.0.0-beta2-19367-01": {
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "1.0.0-beta2-19367-01",
+          "Microsoft.SourceLink.Common": "1.0.0-beta2-19367-01"
+        }
+      },
+      "Microsoft.VisualStudio.Threading.Analyzers/16.4.16": {},
+      "Roslyn.Diagnostics.Analyzers/3.0.0-beta2.20059.3": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "3.0.0-beta2.20059.3",
+          "Microsoft.CodeAnalysis.PublicApiAnalyzers": "3.0.0-beta2.20059.3"
+        }
+      },
+      "System.Collections.Immutable/1.5.0": {},
+      "System.IO.Pipes.AccessControl/4.5.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.2",
+          "System.Security.AccessControl": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        }
+      },
+      "System.Memory/4.5.3": {},
+      "System.Reflection.Metadata/1.6.0": {},
+      "System.Runtime.CompilerServices.Unsafe/4.6.0": {},
+      "System.Security.AccessControl/4.5.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.2",
+          "System.Security.Principal.Windows": "4.5.0"
+        }
+      },
+      "System.Security.Principal.Windows/4.5.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.2"
+        }
+      },
+      "System.Text.Encoding.CodePages/4.5.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.2",
+          "System.Runtime.CompilerServices.Unsafe": "4.6.0"
+        }
+      },
+      "System.Threading.Tasks.Extensions/4.5.3": {},
+      "XliffTasks/1.0.0-beta.19252.1": {},
+      "Microsoft.CodeAnalysis.Common/3.5.0-beta4-20153-05": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "3.0.0-beta2.20059.3",
+          "System.Collections.Immutable": "1.5.0",
+          "System.Memory": "4.5.3",
+          "System.Reflection.Metadata": "1.6.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.6.0",
+          "System.Text.Encoding.CodePages": "4.5.1",
+          "System.Threading.Tasks.Extensions": "4.5.3"
+        },
+        "runtime": {
+          "Microsoft.CodeAnalysis.dll": {}
+        },
+        "resources": {
+          "cs/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "cs"
+          },
+          "de/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "de"
+          },
+          "es/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "es"
+          },
+          "fr/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "fr"
+          },
+          "it/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "ja"
+          },
+          "ko/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "ko"
+          },
+          "pl/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "ru"
+          },
+          "tr/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Microsoft.CodeAnalysis.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.CodeAnalysis.VisualBasic/3.5.0-beta4-20153-05": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "3.5.0-beta4-20153-05"
+        },
+        "runtime": {
+          "Microsoft.CodeAnalysis.VisualBasic.dll": {}
+        },
+        "resources": {
+          "cs/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "cs"
+          },
+          "de/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "de"
+          },
+          "es/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "es"
+          },
+          "fr/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "fr"
+          },
+          "it/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "ja"
+          },
+          "ko/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "ko"
+          },
+          "pl/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "ru"
+          },
+          "tr/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Microsoft.CodeAnalysis.VisualBasic.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "vbc/3.5.0-beta4-20153-05": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Build.Tasks.Git/1.0.0-beta2-19367-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3kbkb7aUF41YuJnQzoCJRbjb6bgYY3KHlJ9GGJZ30Y5ytdFusLAC5o3/kfE+Vm6slvu4EBgIwMUknL6U+Pu9uA==",
+      "path": "microsoft.build.tasks.git/1.0.0-beta2-19367-01",
+      "hashPath": "microsoft.build.tasks.git.1.0.0-beta2-19367-01.nupkg.sha512"
+    },
+    "Microsoft.CodeAnalysis.Analyzers/3.0.0-beta2.20059.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ve2kXanMNVZp1cIoKbflh3RcQgOYLC4UZ23YIMkOnkA6hQjpXsg9NnXbziR2m4i6+WGSz9Wbxp+Tj7XdNRiITw==",
+      "path": "microsoft.codeanalysis.analyzers/3.0.0-beta2.20059.3",
+      "hashPath": "microsoft.codeanalysis.analyzers.3.0.0-beta2.20059.3.nupkg.sha512"
+    },
+    "Microsoft.CodeAnalysis.BannedApiAnalyzers/3.0.0-beta2.20059.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JFl4SqmcwCOlhXJnqA/FpBFwXdxsvFEWO6V4Dz1145rYs0q0qsRsrbDTI90kWP9BS8jbICc2XdIwtQqPKbiWeA==",
+      "path": "microsoft.codeanalysis.bannedapianalyzers/3.0.0-beta2.20059.3",
+      "hashPath": "microsoft.codeanalysis.bannedapianalyzers.3.0.0-beta2.20059.3.nupkg.sha512"
+    },
+    "Microsoft.CodeAnalysis.PublicApiAnalyzers/3.0.0-beta2.20059.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+PdhMU+sIbw13XT9UwzK4UJflr0nX4Jp0mA42XNjyp1uZcAh1mb8RH7FAX/2Y/X4VyCtk6dkuzZqgBMj90bG8w==",
+      "path": "microsoft.codeanalysis.publicapianalyzers/3.0.0-beta2.20059.3",
+      "hashPath": "microsoft.codeanalysis.publicapianalyzers.3.0.0-beta2.20059.3.nupkg.sha512"
+    },
+    "Microsoft.CodeQuality.Analyzers/3.0.0-beta2.20059.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I2pC2GiSUEBfHbAneWd+8ulsvgEtiGT6gFRAcG+iAb77PfdJ+6qeglmzt6CCQp7nK12TaF4vtW8yQcwl6V1l8Q==",
+      "path": "microsoft.codequality.analyzers/3.0.0-beta2.20059.3",
+      "hashPath": "microsoft.codequality.analyzers.3.0.0-beta2.20059.3.nupkg.sha512"
+    },
+    "Microsoft.DiaSymReader.Native/1.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vIzndj0MoWW2Mp/iztUSKvmR9vZTqOVQ6PBvwA57+CDoiz7eUMU15rrAX+/QA0bkmwQ08GRibFBB9LNOl0EiBA==",
+      "path": "microsoft.diasymreader.native/1.7.0",
+      "hashPath": "microsoft.diasymreader.native.1.7.0.nupkg.sha512"
+    },
+    "Microsoft.NetCore.Analyzers/3.0.0-beta2.20059.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mwf7uSPM6Jc4MBq+lzSQiF29nehQrixa7/rviR957KucI1n4e6zp7mJYi6+0ER2btGRogavnKvmB+49GmaUjGQ==",
+      "path": "microsoft.netcore.analyzers/3.0.0-beta2.20059.3",
+      "hashPath": "microsoft.netcore.analyzers.3.0.0-beta2.20059.3.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/2.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mOJy3M0UN+LUG21dLGMxaWZEP6xYpQEpLuvuEQBaownaX4YuhH6NmNUlN9si+vNkAS6dwJ//N1O4DmLf2CikVg==",
+      "path": "microsoft.netcore.platforms/2.1.2",
+      "hashPath": "microsoft.netcore.platforms.2.1.2.nupkg.sha512"
+    },
+    "Microsoft.NETFramework.ReferenceAssemblies/1.0.0-alpha-004": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ev1hyFuJY9MRdq3fPmsMsqAvhtRbj2rNP+pDVH/FjDPvSKTqdSiYCl/v+9+N/DPBylPk7efRQYSA3OaRjmvWDA==",
+      "path": "microsoft.netframework.referenceassemblies/1.0.0-alpha-004",
+      "hashPath": "microsoft.netframework.referenceassemblies.1.0.0-alpha-004.nupkg.sha512"
+    },
+    "Microsoft.SourceLink.Common/1.0.0-beta2-19367-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-T6ZEkbRgqcmDoTQDn0ES4FcXiq6uOiqPmbb+hCnKQ/i45W3WjM1+hfNGmsXvTK/e/AqEGiqtXJIi9ZtmbHnzHQ==",
+      "path": "microsoft.sourcelink.common/1.0.0-beta2-19367-01",
+      "hashPath": "microsoft.sourcelink.common.1.0.0-beta2-19367-01.nupkg.sha512"
+    },
+    "Microsoft.SourceLink.GitHub/1.0.0-beta2-19367-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+Zfc8EddeIPTy9w26xrMOqIL5k5fPICfoYGPMhvlCcmENVT0pslIvrOzRaEvv1UgUL1cjbGRO8SXa1HtoVEhPA==",
+      "path": "microsoft.sourcelink.github/1.0.0-beta2-19367-01",
+      "hashPath": "microsoft.sourcelink.github.1.0.0-beta2-19367-01.nupkg.sha512"
+    },
+    "Microsoft.SourceLink.Vsts.Git/1.0.0-beta2-19367-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vfYRwh2jIQ5XFmqk9BebaGnj3tL9p1hkZ270NMXutiE7jCGH1zMB+3HCPec6DpnC4V3XX1oWlwAXoxNtXB90pQ==",
+      "path": "microsoft.sourcelink.vsts.git/1.0.0-beta2-19367-01",
+      "hashPath": "microsoft.sourcelink.vsts.git.1.0.0-beta2-19367-01.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Threading.Analyzers/16.4.16": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wtZd8BucYNTFmtPutPkstJ+v1CRIrzyBPCLzGPqGsYBnNFfwxdtnZoeK/uBq4Pg0e0uvLYNWgoZsED0/5keHsQ==",
+      "path": "microsoft.visualstudio.threading.analyzers/16.4.16",
+      "hashPath": "microsoft.visualstudio.threading.analyzers.16.4.16.nupkg.sha512"
+    },
+    "Roslyn.Diagnostics.Analyzers/3.0.0-beta2.20059.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VaCJ7m9mwdeS8p0AwhFJYbTHYizOlHfIqcRMMcRWEQiFOPeQxXiTIv6t49WUhryxPyEgO0WUGWMpgxX1Apc+/A==",
+      "path": "roslyn.diagnostics.analyzers/3.0.0-beta2.20059.3",
+      "hashPath": "roslyn.diagnostics.analyzers.3.0.0-beta2.20059.3.nupkg.sha512"
+    },
+    "System.Collections.Immutable/1.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EXKiDFsChZW0RjrZ4FYHu9aW6+P4MCgEDCklsVseRfhoO0F+dXeMSsMRAlVXIo06kGJ/zv+2w1a2uc2+kxxSaQ==",
+      "path": "system.collections.immutable/1.5.0",
+      "hashPath": "system.collections.immutable.1.5.0.nupkg.sha512"
+    },
+    "System.IO.Pipes.AccessControl/4.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z0/uF+PqmiMoqgTA0AQa9JSlNjsxCoQNfRzQGtK4dLfNQ3nsOqPVBgZ7F49U5Lb4yqGJSWJ79AdYaNjdJoZqhQ==",
+      "path": "system.io.pipes.accesscontrol/4.5.1",
+      "hashPath": "system.io.pipes.accesscontrol.4.5.1.nupkg.sha512"
+    },
+    "System.Memory/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "path": "system.memory/4.5.3",
+      "hashPath": "system.memory.4.5.3.nupkg.sha512"
+    },
+    "System.Reflection.Metadata/1.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-COC1aiAJjCoA5GBF+QKL2uLqEBew4JsCkQmoHKbN3TlOZKa2fKLz5CpiRQKDz0RsAOEGsVKqOD5bomsXq/4STQ==",
+      "path": "system.reflection.metadata/1.6.0",
+      "hashPath": "system.reflection.metadata.1.6.0.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HxozeSlipUK7dAroTYwIcGwKDeOVpQnJlpVaOkBz7CM4TsE5b/tKlQBZecTjh6FzcSbxndYaxxpsBMz+wMJeyw==",
+      "path": "system.runtime.compilerservices.unsafe/4.6.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    },
+    "System.Security.AccessControl/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vW8Eoq0TMyz5vAG/6ce483x/CP83fgm4SJe5P8Tb1tZaobcvPrbMEL7rhH1DRdrYbbb6F0vq3OlzmK0Pkwks5A==",
+      "path": "system.security.accesscontrol/4.5.0",
+      "hashPath": "system.security.accesscontrol.4.5.0.nupkg.sha512"
+    },
+    "System.Security.Principal.Windows/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U77HfRXlZlOeIXd//Yoj6Jnk8AXlbeisf1oq1os+hxOGVnuG+lGSfGqTwTZBoORFF6j/0q7HXIl8cqwQ9aUGqQ==",
+      "path": "system.security.principal.windows/4.5.0",
+      "hashPath": "system.security.principal.windows.4.5.0.nupkg.sha512"
+    },
+    "System.Text.Encoding.CodePages/4.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4J2JQXbftjPMppIHJ7IC+VXQ9XfEagN92vZZNoG12i+zReYlim5dMoXFC1Zzg7tsnKDM7JPo5bYfFK4Jheq44w==",
+      "path": "system.text.encoding.codepages/4.5.1",
+      "hashPath": "system.text.encoding.codepages.4.5.1.nupkg.sha512"
+    },
+    "System.Threading.Tasks.Extensions/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+MvhNtcvIbqmhANyKu91jQnvIRVSTiaOiFNfKWwXGHG48YAb4I/TyH8spsySiPYla7gKal5ZnF3teJqZAximyQ==",
+      "path": "system.threading.tasks.extensions/4.5.3",
+      "hashPath": "system.threading.tasks.extensions.4.5.3.nupkg.sha512"
+    },
+    "XliffTasks/1.0.0-beta.19252.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pf1QwugyHdppWF5Q+qLSIqFkPkyBJOTAbvDxMO7Cv8zRkLGR9/OfOrjgSrcnniA2OTfZVo7JzTdNbDNAKSRZIA==",
+      "path": "xlifftasks/1.0.0-beta.19252.1",
+      "hashPath": "xlifftasks.1.0.0-beta.19252.1.nupkg.sha512"
+    },
+    "Microsoft.CodeAnalysis.Common/3.5.0-beta4-20153-05": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.CodeAnalysis.VisualBasic/3.5.0-beta4-20153-05": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

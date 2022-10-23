@@ -1,0 +1,86 @@
+﻿<Window x:Class="OpenVRChatHapticFeedback.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenVRChatHapticFeedback"
+        mc:Ignorable="d"
+        Title="twitch.tv/GoodVrGames - OpenVRChatHapticFeedback" Height="720.534" Width="513.962" StateChanged="Window_StateChanged" Icon="resources/logo.ico" PreviewKeyDown="Window_PreviewKeyDown" PreviewKeyUp="Window_PreviewKeyUp" Loaded="Window_Loaded" Closing="Window_Closing">
+
+    <Grid Margin="0,0,0,0">
+        <GroupBox x:Name="GbSettings" Header="Настройки приложения" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" DockPanel.Dock="Left" Background="AliceBlue" Height="110" Width="251">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="CheckBox_Minimize" Margin="5" Focusable="False" Content="Скрывать при запуске" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="CheckBox_Minimize_Checked" Unchecked="CheckBox_Minimize_Checked"/>
+                    <CheckBox x:Name="CheckBox_Tray" Margin="5" Focusable="False" Content="в трей" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="CheckBox_Tray_Checked" Unchecked="CheckBox_Tray_Checked"/>
+                </StackPanel>
+                <CheckBox x:Name="CheckBox_ExitWithSteamVR" Content="Закрывать при выходе из SteamVR" Margin="5 0 5 5" Checked="CheckBox_ExitWithSteamVR_Checked" Unchecked="CheckBox_ExitWithSteamVR_Checked"/>
+                <StackPanel Orientation="Horizontal" Margin="5 0 5 5">
+                    <TextBlock x:Name="textBlock_Help" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top">
+                            <Hyperlink NavigateUri="https://github.com/alextrof94/OpenVRChatHapticFeedback" Click="ClickedURL">GitHub</Hyperlink>
+                    </TextBlock>
+                    <TextBlock x:Name="textBlock_Issue" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10 0 10 0">
+                            <Hyperlink x:Name="LinkIssue" NavigateUri="https://github.com/alextrof94/OpenVRChatHapticFeedback/issues" Click="ClickedURL">Сообщить об ошибке</Hyperlink>
+                    </TextBlock>
+                    <Label x:Name="Label_Version" Content="vRes" Padding="0"/>
+                </StackPanel><Button x:Name="ButtonLanguage" Content="Switch to english" Click="ButtonLanguage_Click" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="GbStatus" Header="Статус" Margin="266,10,10,0" DockPanel.Dock="Left" Background="WhiteSmoke" Height="110" VerticalAlignment="Top">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label x:Name="LabelStatus" Content="Статус OpenVR:" VerticalAlignment="Center"/>
+                    <Label x:Name="Label_OpenVR" Background="Gray" HorizontalAlignment="Left" Content="OpenVR Status" Padding="5" Foreground="White" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,5">
+                    <Label x:Name="LabelApp" Content="Запущенное app ID:" VerticalAlignment="Center"/>
+                    <Label x:Name="Label_Application" Background="Gray" HorizontalAlignment="Left" Content="Current AppID" Padding="5" Foreground="White" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,5"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="GbLog" Header="Лог" Margin="10,476,10,10" DockPanel.Dock="Left" VerticalAlignment="Stretch">
+            <Grid>
+                <TextBox Margin="5,30,5,5" x:Name="TextBox_Log" IsEnabled="False"/>
+                <CheckBox x:Name="cbShowMessages" Content="Показать сообщения в логе" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="GbTwitch" Header="Twitch Настройки" Height="187" VerticalAlignment="Top" Margin="10,125,10,0">
+            <Grid Margin="0,0,0,0">
+                <Label x:Name="LabelChannelName" Content="Название канала" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TextBoxChannelName" Height="23" Margin="118,10,208,0" TextWrapping="Wrap" Text="goodvrgames" VerticalAlignment="Top" TextChanged="TextBoxChannelName_TextChanged"/>
+                <ComboBox x:Name="ComboBoxFeedbackBy" Margin="118,38,10,0" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="ComboBoxFeedbackBy_SelectionChanged">
+                    <ComboBoxItem Content="Все сообщения"/>
+                    <ComboBoxItem Content="Платные подписчики"/>
+                    <ComboBoxItem Content="Модераторы"/>
+                    <ComboBoxItem Content="!hey"/>
+                    <ComboBoxItem Content="Не оповещать"/>
+                </ComboBox>
+                <Label x:Name="LabelFeedbackBy" Content="Оповещать по" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="ComboBoxWhichController" Margin="118,65,10,0" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="ComboBoxWhichController_SelectionChanged">
+                    <ComboBoxItem Content="Левый"/>
+                    <ComboBoxItem Content="Правый"/>
+                    <ComboBoxItem Content="Оба"/>
+                </ComboBox>
+                <Label x:Name="LabelWhichController" Content="На контроллере" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="TwitchTestButton" Content="Тест" Margin="10,121,10,10" Click="TwitchTestButton_Click"/>
+                <ComboBox x:Name="ComboBoxFeedbackType" Margin="118,92,10,0" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="ComboBoxFeedbackType_SelectionChanged">
+                    <ComboBoxItem Content="бз-бз бз-бз бз-бз"/>
+                    <ComboBoxItem Content="бз бз бз"/>
+                    <ComboBoxItem Content="бз"/>
+                </ComboBox>
+                <Label x:Name="LabelFeedbackType" Content="Тип оповещения" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="ButtonConnect" Content="Сохранить и подсоединиться" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="193" Height="23" IsEnabled="False" Click="ButtonConnect_Click" ToolTip="При запуске приложения присоединение происходит автоматически"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="GbAbout" Header="О приложении" Height="154" Margin="10,317,10,0" VerticalAlignment="Top">
+            <StackPanel Margin="0,0,-2,0">
+                <TextBlock x:Name="tb1" TextWrapping="Wrap" Text="Приложение создано автором канала на Twitch: GoodVrGames"/>
+                <TextBlock x:Name="tb2" TextWrapping="Wrap" Text="Оно полностью бесплатно, но я буду очень благодарен, если мой канал вырастет благодаря тебе! Поэтому прошу сообщить своим зрителям о моем канале."/>
+                <TextBlock x:Name="tb3" TextWrapping="Wrap" Text="Я стараюсь вести трансляции каждый день с началом в промежутке с 18 до полуночи и длительностью не менее часа. Играю преимущественно в VR игры."/>
+                <TextBlock x:Name="tb4" TextWrapping="Wrap" Text="Также мы можем скооперироваться с тобой. Такое я поддерживаю, но я не люблю мат &quot;через слово&quot;. Если не замечал за собой излишнего сквернословия - пиши, не стесняйся, даже если мой канал вырос до миллиона подписчиков (лол, сейчас их 9)."/>
+
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

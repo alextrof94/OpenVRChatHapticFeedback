@@ -1,0 +1,57 @@
+[
+  {
+    "name": "bz-bz bz-bz bz-bz",
+    "hapticFrames": [
+      {
+        "duration": 100,
+        "delayAfterPlay": 30
+      },
+      {
+        "duration": 100,
+        "delayAfterPlay": 100
+      },
+      {
+        "duration": 100,
+        "delayAfterPlay": 30
+      },
+      {
+        "duration": 100,
+        "delayAfterPlay": 100
+      },
+      {
+        "duration": 100,
+        "delayAfterPlay": 30
+      },
+      {
+        "duration": 100,
+        "delayAfterPlay": 0
+      }
+    ]
+  },
+  {
+    "name": "bz bz bzz",
+    "hapticFrames": [
+      {
+        "duration": 100,
+        "delayAfterPlay": 200
+      },
+      {
+        "duration": 100,
+        "delayAfterPlay": 200
+      },
+      {
+        "duration": 200,
+        "delayAfterPlay": 0
+      }
+    ]
+  },
+  {
+    "name": "bzzzzz",
+    "hapticFrames": [
+      {
+        "duration": 500,
+        "delayAfterPlay": 0
+      }
+    ]
+  }
+]
