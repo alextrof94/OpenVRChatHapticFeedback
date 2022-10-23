@@ -369,7 +369,7 @@ namespace OpenVRChatHapticFeedback
                 }
                 else
                 {
-                    json = "[ { \"name\": \"бз-бз бз-бз бз-бз\", \"hapticFrames\": [ { \"duration\": 100, \"delayAfterPlay\": 100 }, { \"duration\": 100, \"delayAfterPlay\": 200 }, { \"duration\": 100, \"delayAfterPlay\": 100 }, { \"duration\": 100, \"delayAfterPlay\": 200 }, { \"duration\": 100, \"delayAfterPlay\": 100 }, { \"duration\": 100, \"delayAfterPlay\": 0 } ] }, { \"name\": \"бз бз бзз\", \"hapticFrames\": [ { \"duration\": 100, \"delayAfterPlay\": 200 }, { \"duration\": 100, \"delayAfterPlay\": 200 }, { \"duration\": 200, \"delayAfterPlay\": 0 } ] }, { \"name\": \"бззззз\", \"hapticFrames\": [ { \"duration\": 500, \"delayAfterPlay\": 0 } ] } ]";
+                    json = "[ { \"name\": \"bz-bz bz-bz bz-bz\", \"hapticFrames\": [ { \"duration\": 100, \"delayAfterPlay\": 100 }, { \"duration\": 100, \"delayAfterPlay\": 200 }, { \"duration\": 100, \"delayAfterPlay\": 100 }, { \"duration\": 100, \"delayAfterPlay\": 200 }, { \"duration\": 100, \"delayAfterPlay\": 100 }, { \"duration\": 100, \"delayAfterPlay\": 0 } ] }, { \"name\": \"bz bz bzz\", \"hapticFrames\": [ { \"duration\": 100, \"delayAfterPlay\": 200 }, { \"duration\": 100, \"delayAfterPlay\": 200 }, { \"duration\": 200, \"delayAfterPlay\": 0 } ] }, { \"name\": \"bzzzzz\", \"hapticFrames\": [ { \"duration\": 500, \"delayAfterPlay\": 0 } ] } ]";
                     System.IO.File.WriteAllText("HapticAnimations.json", json);
                 }
                 animations = JsonConvert.DeserializeObject<List<HapticAnimation>>(json);
