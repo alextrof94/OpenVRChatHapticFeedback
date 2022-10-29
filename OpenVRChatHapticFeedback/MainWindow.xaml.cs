@@ -191,6 +191,9 @@ namespace OpenVRChatHapticFeedback
                 if (e.ChatMessage.IsMe)
                     return;
 
+                if (all)
+                    needStartHaptics = true;
+
                 if (e.ChatMessage.Message[0] == '!' && (all || CheckBoxCmd.IsChecked.Value))
                     needStartHaptics = true;
 
