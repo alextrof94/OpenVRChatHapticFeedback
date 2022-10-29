@@ -14,6 +14,7 @@ using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using TwitchLib;
 using TwitchLib.Client.Models;
 using TwitchLib.Client.Events;
+using System.IO;
 
 namespace OpenVRChatHapticFeedback
 {
@@ -183,30 +184,48 @@ namespace OpenVRChatHapticFeedback
                     WriteToLog(e.ChatMessage.Username + ": " + e.ChatMessage.Message);
 
                 bool needStartHaptics = false;
-                var notifyMode = (NotifyMode)ComboBoxFeedbackBy.SelectedIndex;
                 var channel_name = (string)TextBoxChannelName.Text;
 
-                if (e.ChatMessage.Message[0] == '!' && e.ChatMessage.Message != "!hey")
+                bool all = CheckBoxAll.IsChecked.Value;
+
+                if (e.ChatMessage.IsMe)
                     return;
 
-                switch (notifyMode)
-                {
-                    case NotifyMode.HEY:
-                        if (e.ChatMessage.Message == "!hey")
-                            needStartHaptics = true;
-                        break;
-                    case NotifyMode.MODERATORS:
-                        if (e.ChatMessage.Username == channel_name || e.ChatMessage.IsMe || e.ChatMessage.IsBroadcaster || e.ChatMessage.IsModerator)
-                            needStartHaptics = true;
-                        break;
-                    case NotifyMode.SUBSCRIBERS:
-                        if (e.ChatMessage.Username == channel_name || e.ChatMessage.IsMe || e.ChatMessage.IsBroadcaster || e.ChatMessage.IsModerator || e.ChatMessage.IsSubscriber)
-                            needStartHaptics = true;
-                        break;
-                    case NotifyMode.ALL_MESSAGES:
-                        needStartHaptics = true;
-                        break;
-                }
+                if (e.ChatMessage.Message[0] == '!' && (all || CheckBoxCmd.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.Message == "!hey" && (all || CheckBoxHey.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsFirstMessage && (all || CheckBoxFirst.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsHighlighted && (all || CheckBoxHighlighted.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsSkippingSubMode && (all || CheckBoxSubmodeSkipped.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsTurbo && (all || CheckBoxTurbo.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsVip && (all || CheckBoxVip.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsPartner && (all || CheckBoxPartner.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsModerator && (all || CheckBoxModer.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsSubscriber && (all || CheckBoxSubscriber.IsChecked.Value))
+                    needStartHaptics = true;
+
+                if (e.ChatMessage.IsBroadcaster)
+                    needStartHaptics = true; // for easy test
+
+                if (e.ChatMessage.IsStaff)
+                    needStartHaptics = true; // is stuff by twitch?
 
                 if (needStartHaptics)
                     _controller.PlayHaptic(animations[ComboBoxFeedbackType.SelectedIndex]);
@@ -356,9 +375,32 @@ namespace OpenVRChatHapticFeedback
             CheckBox_Tray.IsChecked = (bool)MainModel.LoadSetting(MainModel.Setting.Tray);
             CheckBox_ExitWithSteamVR.IsChecked = (bool)MainModel.LoadSetting(MainModel.Setting.ExitWithSteam);
 
-            ComboBoxFeedbackBy.SelectedIndex = (int)MainModel.LoadSetting(MainModel.Setting.FeedbackBy);
             ComboBoxWhichController.SelectedIndex = (int)MainModel.LoadSetting(MainModel.Setting.WhichController);
             TextBoxChannelName.Text = (string)MainModel.LoadSetting(MainModel.Setting.ChannelName);
+
+            var val = (string)MainModel.LoadSetting(MainModel.Setting.NewFeedbackBy);
+            CheckBoxAll.IsChecked = val[0] == '1';
+            CheckBoxCmd.IsChecked = val[1] == '1';
+            CheckBoxFirst.IsChecked = val[2] == '1';
+            CheckBoxHey.IsChecked = val[3] == '1';
+            CheckBoxHighlighted.IsChecked = val[4] == '1';
+            CheckBoxModer.IsChecked = val[5] == '1';
+            CheckBoxPartner.IsChecked = val[6] == '1';
+            CheckBoxSubmodeSkipped.IsChecked = val[7] == '1';
+            CheckBoxSubscriber.IsChecked = val[8] == '1';
+            CheckBoxTurbo.IsChecked = val[9] == '1';
+            CheckBoxVip.IsChecked = val[10] == '1';
+
+            CheckBoxCmd.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxFirst.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxHey.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxHighlighted.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxModer.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxPartner.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxSubmodeSkipped.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxSubscriber.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxTurbo.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            CheckBoxVip.IsEnabled = !CheckBoxAll.IsChecked.Value;
 
             try
             {
@@ -417,7 +459,6 @@ namespace OpenVRChatHapticFeedback
 
                 GbTwitch.Header = "Twitch settings";
                 LabelChannelName.Content = "Channel name";
-                LabelFeedbackBy.Content = "Haptic by";
                 LabelFeedbackType.Content = "Haptic type";
                 LabelWhichController.Content = "On controller";
                 TwitchTestButton.Content = "TEST";
@@ -432,21 +473,25 @@ namespace OpenVRChatHapticFeedback
                 GbLog.Header = "Log";
                 cbShowMessages.Content = "Show messages in log";
 
-                var sel = ComboBoxFeedbackBy.SelectedIndex;
-                ComboBoxFeedbackBy.Items.Clear();
-                ComboBoxFeedbackBy.Items.Add("All messages");
-                ComboBoxFeedbackBy.Items.Add("Subscribers");
-                ComboBoxFeedbackBy.Items.Add("Moderators");
-                ComboBoxFeedbackBy.Items.Add("!hey");
-                ComboBoxFeedbackBy.Items.Add("Not notify me");
-                ComboBoxFeedbackBy.SelectedIndex = sel;
-
-                sel = ComboBoxWhichController.SelectedIndex;
+                var sel = ComboBoxWhichController.SelectedIndex;
                 ComboBoxWhichController.Items.Clear();
                 ComboBoxWhichController.Items.Add("Left");
                 ComboBoxWhichController.Items.Add("Right");
                 ComboBoxWhichController.Items.Add("Both");
                 ComboBoxWhichController.SelectedIndex = sel;
+
+                GroupBoxFeedbackBy.Header = "Feedback by";
+                CheckBoxAll.Content = "All messages";
+                CheckBoxCmd.Content = "!cmds";
+                CheckBoxFirst.Content = "First message";
+                CheckBoxHey.Content = "!hey";
+                CheckBoxHighlighted.Content = "Highlighted";
+                CheckBoxModer.Content = "By moderator";
+                CheckBoxPartner.Content = "By partner";
+                CheckBoxSubmodeSkipped.Content = "Submode message by points";
+                CheckBoxSubscriber.Content = "By subscriber";
+                CheckBoxTurbo.Content = "By Turbo";
+                CheckBoxVip.Content = "By VIP";
             } 
             else
             {
@@ -463,7 +508,6 @@ namespace OpenVRChatHapticFeedback
 
                 GbTwitch.Header = "Настройки Twitch";
                 LabelChannelName.Content = "Название канала";
-                LabelFeedbackBy.Content = "Оповещать о";
                 LabelFeedbackType.Content = "Тип оповещения";
                 LabelWhichController.Content = "На контроллере";
                 TwitchTestButton.Content = "ТЕСТ";
@@ -478,21 +522,25 @@ namespace OpenVRChatHapticFeedback
                 GbLog.Header = "Лог";
                 cbShowMessages.Content = "Показать сообщения в логе";
 
-                var sel = ComboBoxFeedbackBy.SelectedIndex;
-                ComboBoxFeedbackBy.Items.Clear();
-                ComboBoxFeedbackBy.Items.Add("Все сообщения");
-                ComboBoxFeedbackBy.Items.Add("Подписчики");
-                ComboBoxFeedbackBy.Items.Add("Модераторы");
-                ComboBoxFeedbackBy.Items.Add("!hey");
-                ComboBoxFeedbackBy.Items.Add("Не оповещать");
-                ComboBoxFeedbackBy.SelectedIndex = sel;
-
-                sel = ComboBoxWhichController.SelectedIndex;
+                var sel = ComboBoxWhichController.SelectedIndex;
                 ComboBoxWhichController.Items.Clear();
                 ComboBoxWhichController.Items.Add("Левый");
                 ComboBoxWhichController.Items.Add("Правый");
                 ComboBoxWhichController.Items.Add("Оба");
                 ComboBoxWhichController.SelectedIndex = sel;
+
+                GroupBoxFeedbackBy.Header = "Оповещать по";
+                CheckBoxAll.Content = "Все сообщения";
+                CheckBoxCmd.Content = "!команды";
+                CheckBoxFirst.Content = "Первые сообщения";
+                CheckBoxHey.Content = "!hey";
+                CheckBoxHighlighted.Content = "Подсвеченные сообщения";
+                CheckBoxModer.Content = "От модераторов";
+                CheckBoxPartner.Content = "От партнеров";
+                CheckBoxSubmodeSkipped.Content = "Сообщения в сабмоде за баллы";
+                CheckBoxSubscriber.Content = "От подписчиков";
+                CheckBoxTurbo.Content = "От турбо";
+                CheckBoxVip.Content = "От ВИП";
             }
 		}
 
@@ -552,14 +600,6 @@ namespace OpenVRChatHapticFeedback
                 ButtonConnect.IsEnabled = true;
         }
 
-		private void ComboBoxFeedbackBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (!loaded)
-                return;
-            if (ComboBoxFeedbackBy.SelectedIndex > -1)
-                MainModel.UpdateSetting(MainModel.Setting.FeedbackBy, ComboBoxFeedbackBy.SelectedIndex);
-        }
-
 		private void ComboBoxWhichController_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!loaded)
@@ -603,6 +643,61 @@ namespace OpenVRChatHapticFeedback
             if (client != null && client.IsConnected)
                 client.Disconnect();
 		}
+
+        private void CheckBoxMessage_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!loaded)
+                return;
+            var ch = (CheckBox)sender;
+
+            if (ch.Name == nameof(CheckBoxAll))
+            {
+                CheckBoxCmd.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxFirst.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxHey.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxHighlighted.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxModer.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxPartner.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxSubmodeSkipped.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxSubscriber.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxTurbo.IsEnabled = !ch.IsChecked.Value;
+                CheckBoxVip.IsEnabled = !ch.IsChecked.Value;
+            }
+
+            int index = 0;
+            switch (ch.Name)
+            {
+                case nameof(CheckBoxAll): index = 0; break;
+                case nameof(CheckBoxCmd): index = 1; break;
+                case nameof(CheckBoxFirst): index = 2; break;
+                case nameof(CheckBoxHey): index = 3; break;
+                case nameof(CheckBoxHighlighted): index = 4; break;
+                case nameof(CheckBoxModer): index = 5; break;
+                case nameof(CheckBoxPartner): index = 6; break;
+                case nameof(CheckBoxSubmodeSkipped): index = 7; break;
+                case nameof(CheckBoxSubscriber): index = 8; break;
+                case nameof(CheckBoxTurbo): index = 9; break;
+                case nameof(CheckBoxVip): index = 10; break;
+            }
+
+            var val = ((string)MainModel.LoadSetting(MainModel.Setting.NewFeedbackBy)).ToCharArray();
+            val[index] = ch.IsChecked.Value ? '1' : '0';
+            var newVal = new string(val);
+            MainModel.UpdateSetting(MainModel.Setting.NewFeedbackBy, newVal);
+            WriteToLog("flags:" + newVal);
+        }
+
+		private void ButtonOpenJson_Click(object sender, RoutedEventArgs e)
+		{
+            string filePath = AppDomain.CurrentDomain.BaseDirectory + "actions.json";
+            if (!File.Exists(filePath))
+            {
+                return;
+            }
+            string argument = "/select, \"" + filePath + "\"";
+
+            System.Diagnostics.Process.Start("explorer.exe", argument);
+        }
 	}
 
 	[Serializable]
@@ -617,11 +712,6 @@ namespace OpenVRChatHapticFeedback
 	{
         public int duration { get; set; } = 100;
         public int delayAfterPlay { get; set; } = 100;
-    }
-
-    public enum NotifyMode
-    {
-        ALL_MESSAGES, SUBSCRIBERS, MODERATORS, HEY, NOFEEDBACK
     }
 
     public enum NotifyController

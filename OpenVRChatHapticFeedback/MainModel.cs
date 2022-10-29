@@ -164,7 +164,7 @@ namespace OpenVRChatHapticFeedback
         #region Settings
         public enum Setting
         {
-            Minimize, Tray, Notification, Haptic, ExitWithSteam, FeedbackType, WhichController, ChannelName, FeedbackBy, English
+            Minimize, Tray, Notification, Haptic, ExitWithSteam, FeedbackType, WhichController, ChannelName, FeedbackBy, English, NewFeedbackBy
         }
 
         private static readonly Properties.Settings p = Properties.Settings.Default;

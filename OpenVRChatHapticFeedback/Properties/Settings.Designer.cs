@@ -142,5 +142,17 @@ namespace OpenVRChatHapticFeedback.Properties {
                 this["english"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100000000000")]
+        public string NewFeedbackBy {
+            get {
+                return ((string)(this["NewFeedbackBy"]));
+            }
+            set {
+                this["NewFeedbackBy"] = value;
+            }
+        }
     }
 }
