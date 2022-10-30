@@ -6,7 +6,7 @@ You can download app in [releases](https://github.com/alextrof94/OpenVRChatHapti
 3. Install.
 4. Setup channel name and other options.
 
-For updating you need remove app first.
+For updating you propably need remove app first.
 
 It will be autostart with SteamVR. You can disable it from SteamVR settings.
 
