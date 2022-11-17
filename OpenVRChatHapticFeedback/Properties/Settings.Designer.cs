@@ -154,5 +154,53 @@ namespace OpenVRChatHapticFeedback.Properties {
                 this["NewFeedbackBy"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int daDelay {
+            get {
+                return ((int)(this["daDelay"]));
+            }
+            set {
+                this["daDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string daLogin {
+            get {
+                return ((string)(this["daLogin"]));
+            }
+            set {
+                this["daLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string daPassword {
+            get {
+                return ((string)(this["daPassword"]));
+            }
+            set {
+                this["daPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string daTokens {
+            get {
+                return ((string)(this["daTokens"]));
+            }
+            set {
+                this["daTokens"] = value;
+            }
+        }
     }
 }

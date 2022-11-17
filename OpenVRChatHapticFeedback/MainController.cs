@@ -390,6 +390,12 @@ namespace OpenVRChatHapticFeedback
                 subTimer.Stop();
             }
         }
+
+        public void ShowNotification(string str)
+		{
+            var notificationBitmap = EasyOpenVRSingleton.BitmapUtils.NotificationBitmapFromBitmap(Properties.Resources.da);
+            _ovr.EnqueueNotification(_notificationOverlayHandle, str, notificationBitmap);
+        }
     }
 
     public enum ControllerType

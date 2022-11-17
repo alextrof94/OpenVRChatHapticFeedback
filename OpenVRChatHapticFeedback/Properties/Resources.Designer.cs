@@ -70,6 +70,16 @@ namespace OpenVRChatHapticFeedback.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap da {
+            get {
+                object obj = ResourceManager.GetObject("da", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
         /// </summary>
         public static System.Drawing.Icon icon {
@@ -90,7 +100,7 @@ namespace OpenVRChatHapticFeedback.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на v1.3.
+        ///   Ищет локализованную строку, похожую на v1.4.
         /// </summary>
         public static string Version {
             get {

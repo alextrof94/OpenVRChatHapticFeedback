@@ -15,6 +15,10 @@ using TwitchLib;
 using TwitchLib.Client.Models;
 using TwitchLib.Client.Events;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Net;
+using System.Globalization;
 
 namespace OpenVRChatHapticFeedback
 {
@@ -31,11 +35,35 @@ namespace OpenVRChatHapticFeedback
         private bool _initDone = false;
         private bool _dashboardIsVisible = false;
 
-        private bool loaded = false;
+
+		private bool loaded = false;
 
         List<HapticAnimation> animations;
 
         public TwitchLib.Client.TwitchClient client;
+
+        #region DAparams
+        private string myUrl = "https://turnlive.ru/da/";
+        string address = "https://www.donationalerts.com/";
+        string addressAuth = "oauth/authorize";
+        string addressToken = "oauth/token";
+        string addressDonations = "api/v1/alerts/donations";
+
+        string scope = "oauth-user-show oauth-donation-index oauth-donation-subscribe oauth-custom_alert-store oauth-goal-subscribe oauth-poll-subscribe";
+        string redirectUrl = "https://turnlive.ru/da/vr.php";
+
+
+        string tokenType = "";
+        string expiresIn = "";
+        string tokenAccess = "";
+        string tokenRefresh = "";
+
+        bool daAuthorised = false;
+
+        DateTime daLastDonateTime = DateTime.UtcNow;
+
+        System.Windows.Forms.Timer daTimer = new System.Windows.Forms.Timer();
+        #endregion
 
         public MainWindow()
         {
@@ -235,8 +263,20 @@ namespace OpenVRChatHapticFeedback
             });
         }
 
-		private void WriteToLog(String message)
+        private void WriteToLog(String message)
         {
+            var time = DateTime.Now.ToString("HH:mm:ss");
+            var oldLog = TextBox_Log.Text;
+            var lines = oldLog.Split('\n');
+            Array.Resize(ref lines, 3);
+            var newLog = string.Join("\n", lines);
+            TextBox_Log.Text = $"{time}: {message}\n{newLog}";
+        }
+
+        private void WriteToLogDa(String message, bool needShowAnyway = false)
+        {
+            if (!cbShowDa.IsChecked.Value && !needShowAnyway)
+                return;
             var time = DateTime.Now.ToString("HH:mm:ss");
             var oldLog = TextBox_Log.Text;
             var lines = oldLog.Split('\n');
@@ -374,12 +414,35 @@ namespace OpenVRChatHapticFeedback
         // Load settings and apply them to the checkboxes
         private void InitSettings()
         {
+			daTimer.Tick += DaTimer_Tick;
             CheckBox_Minimize.IsChecked = (bool)MainModel.LoadSetting(MainModel.Setting.Minimize);
             CheckBox_Tray.IsChecked = (bool)MainModel.LoadSetting(MainModel.Setting.Tray);
             CheckBox_ExitWithSteamVR.IsChecked = (bool)MainModel.LoadSetting(MainModel.Setting.ExitWithSteam);
 
             ComboBoxWhichController.SelectedIndex = (int)MainModel.LoadSetting(MainModel.Setting.WhichController);
             TextBoxChannelName.Text = (string)MainModel.LoadSetting(MainModel.Setting.ChannelName);
+
+            cbDaDelay.SelectedIndex = (int)MainModel.LoadSetting(MainModel.Setting.daDelay);
+            tbDaLogin.Text = (string)MainModel.LoadSetting(MainModel.Setting.daLogin);
+            tbDaPassword.Password = (string)MainModel.LoadSetting(MainModel.Setting.daPassword);
+
+            string tokens = (string)MainModel.LoadSetting(MainModel.Setting.daTokens);
+            try
+            {
+                AuthResp resp = AuthResp.Deserialize(tokens);
+                tokenAccess = resp.access_token;
+                tokenRefresh = resp.refresh_token;
+                tokenType = resp.token_type;
+                expiresIn = resp.expires_in;
+                switch ((int)MainModel.LoadSetting(MainModel.Setting.daDelay))
+                {
+                    case 0: daTimer.Enabled = false; daTimer.Interval = 10000; break;
+                    case 1: daTimer.Enabled = true; daTimer.Interval = 5000; break;
+                    case 2: daTimer.Enabled = true; daTimer.Interval = 60000; break;
+                }
+                daAuthorised = true;
+                UpdateAuthorisedSection();
+            } catch { }
 
             var val = (string)MainModel.LoadSetting(MainModel.Setting.NewFeedbackBy);
             CheckBoxAll.IsChecked = val[0] == '1';
@@ -466,6 +529,7 @@ namespace OpenVRChatHapticFeedback
                 LabelWhichController.Content = "On controller";
                 TwitchTestButton.Content = "TEST";
                 ButtonConnect.Content = "Save & connect";
+                ButtonOpenJson.Content = "Open JSON";
 
                 GbAbout.Header = "About";
                 tb1.Text = "Created by russian guy with twitch channel: GoodVrGames";
@@ -495,6 +559,12 @@ namespace OpenVRChatHapticFeedback
                 CheckBoxSubscriber.Content = "By subscriber";
                 CheckBoxTurbo.Content = "By Turbo";
                 CheckBoxVip.Content = "By VIP";
+
+                gbDa.Visibility = Visibility.Hidden;
+                cbShowDa.Visibility = Visibility.Hidden;
+                GbTwitch.Margin = new Thickness(10, 125, 10, 0);
+                if (daTimer.Enabled)
+                    daTimer.Enabled = false;
             } 
             else
             {
@@ -514,7 +584,8 @@ namespace OpenVRChatHapticFeedback
                 LabelFeedbackType.Content = "Тип оповещения";
                 LabelWhichController.Content = "На контроллере";
                 TwitchTestButton.Content = "ТЕСТ";
-                ButtonConnect.Content = "Сохранить и подключиться";
+                ButtonConnect.Content = "Сохранить";
+                ButtonOpenJson.Content = "Открыть JSON";
 
                 GbAbout.Header = "О создателе";
                 tb1.Text = "Приложение создано автором канала на Twitch: GoodVrGames";
@@ -523,7 +594,7 @@ namespace OpenVRChatHapticFeedback
                 tb4.Text = "Также мы можем скооперироваться с тобой. Такое я поддерживаю, но я не люблю мат \"через слово\". Если не замечал за собой излишнего сквернословия - пиши, не стесняйся, даже если мой канал вырос до миллиона подписчиков (лол, сейчас их 9).";
 
                 GbLog.Header = "Лог";
-                cbShowMessages.Content = "Показать сообщения в логе";
+                cbShowMessages.Content = "Показывать сообщения";
 
                 var sel = ComboBoxWhichController.SelectedIndex;
                 ComboBoxWhichController.Items.Clear();
@@ -544,6 +615,12 @@ namespace OpenVRChatHapticFeedback
                 CheckBoxSubscriber.Content = "От подписчиков";
                 CheckBoxTurbo.Content = "От турбо";
                 CheckBoxVip.Content = "От ВИП";
+
+                gbDa.Visibility = Visibility.Visible;
+                cbShowDa.Visibility = Visibility.Visible;
+                GbTwitch.Margin = new Thickness(10, 125, 245, 0);
+                if (!daTimer.Enabled)
+                    daTimer.Enabled = true;
             }
 		}
 
@@ -701,6 +778,189 @@ namespace OpenVRChatHapticFeedback
 
             System.Diagnostics.Process.Start("explorer.exe", argument);
         }
+
+		#region DA
+
+		private void OpenSiteButton_Click(object sender, RoutedEventArgs e)
+		{
+            System.Diagnostics.Process.Start(myUrl);
+        }
+
+        private void buDaAuth_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                if (string.IsNullOrEmpty(tbDaLogin.Text) || string.IsNullOrEmpty(tbDaPassword.Password))
+                {
+                    MessageBox.Show("Введите логин и пароль!");
+                    WriteToLog("Введите логин и пароль!");
+                    return;
+                }
+                string body = "app_id=1&login=" + HttpUtility.UrlEncode(tbDaLogin.Text) + "&pass=" + HttpUtility.UrlEncode(tbDaPassword.Password);
+                string tokens = DoPostRequest("https://turnlive.ru/da/appauth.php", body);
+                if (tokens.StartsWith("ERROR"))
+				{
+                    MessageBox.Show(tokens);
+				}
+                tokens = HttpUtility.UrlDecode(tokens);
+                WriteToLogDa(tokens);
+                AuthResp resp = AuthResp.Deserialize(tokens);
+                tokenAccess = resp.access_token;
+                tokenRefresh = resp.refresh_token;
+                tokenType = resp.token_type;
+                expiresIn = resp.expires_in;
+
+                MainModel.UpdateSetting(MainModel.Setting.daTokens, tokens);
+                MainModel.UpdateSetting(MainModel.Setting.daLogin, tbDaLogin.Text);
+                MainModel.UpdateSetting(MainModel.Setting.daPassword, tbDaPassword.Password);
+
+                daTimer.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                WriteToLogDa(ex.Message, true);
+            }
+        }
+
+        #region HTTP
+
+        private string DoPostRequest(string url, string body)
+        {
+            string res = "";
+            try
+            {
+                ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(delegate { return true; });
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+                httpWebRequest.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(body);
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    res = streamReader.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteToLogDa(ex.Message);
+            }
+            return res;
+        }
+
+        private string DoDonateRequest(string url, string bearer)
+        {
+            string res = "";
+            try
+            {
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.Method = "GET";
+                httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + bearer);
+
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    res = streamReader.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteToLogDa(ex.Message);
+            }
+            return res;
+        }
+
+        #endregion //HTTP
+
+        private void cbDaDelay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!loaded)
+                return;
+            MainModel.UpdateSetting(MainModel.Setting.daDelay, cbDaDelay.SelectedIndex);
+            switch ((int)MainModel.LoadSetting(MainModel.Setting.daDelay))
+            {
+                case 0: daTimer.Enabled = false; daTimer.Interval = 10000; break;
+                case 1: daTimer.Enabled = true; daTimer.Interval = 5000; break;
+                case 2: daTimer.Enabled = true; daTimer.Interval = 60000; break;
+            }
+        }
+
+        private void DaTimer_Tick(object sender, EventArgs e)
+        {
+            if (cbDaDelay.SelectedIndex == 0)
+                return;
+            try
+            {
+                string url = address + addressDonations;
+                string donates = DoDonateRequest(url, tokenAccess);
+                donates = ConvertUnicodeEscapeSequencetoUTF8Characters(donates);
+                WriteToLogDa(donates);
+                JsonSerializerSettings sett = new JsonSerializerSettings();
+                sett.StringEscapeHandling = StringEscapeHandling.EscapeNonAscii;
+                var resp = JsonConvert.DeserializeObject<DonateResp>(donates, sett);
+                daAuthorised = true;
+
+                List<Donate> donatsToShow = new List<Donate>();
+                foreach (var donate in resp.data)
+                {
+                    if (donate.GetTime() > daLastDonateTime)
+                        donatsToShow.Add(donate);
+                }
+                foreach (var donate in donatsToShow)
+                {
+                    if (donate.GetTime() > daLastDonateTime)
+                        daLastDonateTime = donate.GetTime();
+                    ShowDonate(donate);
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteToLogDa(ex.Message, true);
+                daAuthorised = false;
+                daTimer.Enabled = false;
+                _controller.ShowNotification("DA отвалился.");
+            }
+            UpdateAuthorisedSection();
+        }
+
+        private void UpdateAuthorisedSection()
+        {
+            if (daAuthorised)
+                buDaAuth.Content = "Авторизовано";
+            else
+                buDaAuth.Content = "Войти!";
+        }
+
+        private void ShowDonate(Donate donate)
+		{
+            string res = $"{donate.username} ({donate.amount} {donate.currency}): {donate.message}";
+            WriteToLogDa(res, true);
+            _controller.ShowNotification(res);
+        }
+
+        private static Regex _regex = new Regex(@"(\\u(?<Value>[a-zA-Z0-9]{4}))+", RegexOptions.Compiled);
+        private static string ConvertUnicodeEscapeSequencetoUTF8Characters(string sourceContent)
+        {
+            return _regex.Replace(
+                sourceContent, m =>
+                {
+                    var urlEncoded = m.Groups[0].Value.Replace(@"\u00", "%");
+                    var urlDecoded = Regex.Unescape(urlEncoded);
+                    return urlDecoded;
+                }
+            );
+        }
+
+
+		#endregion
+
 	}
 
 	[Serializable]
@@ -720,5 +980,137 @@ namespace OpenVRChatHapticFeedback
     public enum NotifyController
     {
         LEFT, RIGHT, BOTH
+    }
+
+
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class AuthResp
+    {
+        [JsonProperty("token_type")]
+        public string token_type { get; set; }
+
+        [JsonProperty("expires_in")]
+        public string expires_in { get; set; }
+
+        [JsonProperty("access_token")]
+        public string access_token { get; set; }
+
+        [JsonProperty("refresh_token")]
+        public string refresh_token { get; set; }
+
+        public string ToJsonString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+        public static AuthResp Deserialize(string jsonString)
+        {
+            return JsonConvert.DeserializeObject<AuthResp>(jsonString);
+        }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class UserDonate
+    {
+        [JsonProperty("username")]
+        public string Username { get; set; }
+
+        [JsonProperty("donated_all")]
+        public decimal DonatedAll { get; set; }
+
+        [JsonProperty("processed_donates")]
+        public int ProcessedDonates { get; set; }
+
+        public override string ToString()
+        {
+            return Username + ": [" + DonatedAll + "] [" + ProcessedDonates + "]";
+        }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class DonateResp
+    {
+        [JsonProperty("data")]
+        public List<Donate> data { get; set; }
+
+        [JsonProperty("meta")]
+        public Metadata meta { get; set; }
+
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Metadata
+    {
+        [JsonProperty("title")]
+        public string title { get; set; }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Donate
+    {
+        [JsonProperty("id")]
+        public int id { get; set; }
+
+        [JsonProperty("name")]
+        public string name { get; set; }
+
+        [JsonProperty("username")]
+        public string username { get; set; }
+
+        [JsonProperty("message_type")]
+        public string message_type { get; set; }
+
+        [JsonProperty("message")]
+        public string message { get; set; }
+
+        [JsonProperty("amount")]
+        public decimal amount { get; set; }
+
+        [JsonProperty("currency")]
+        public string currency { get; set; }
+
+        [JsonProperty("is_shown")]
+        public int is_shown { get; set; }
+
+        [JsonProperty("created_at")]
+        public string created_at { get; set; }
+
+        [JsonProperty("shown_at")]
+        public string shown_at { get; set; }
+
+        [JsonProperty("payin_system")]
+        public PaySystem payin_system { get; set; }
+
+        [JsonProperty("recipient")]
+        public Recipient recipient { get; set; }
+
+        public DateTime GetTime()
+		{
+            return DateTime.ParseExact(created_at, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+		}
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class PaySystem
+    {
+        [JsonProperty("title")]
+        public string title { get; set; }
+    }
+
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Recipient
+    {
+        [JsonProperty("user_id")]
+        public int user_id { get; set; }
+
+        [JsonProperty("code")]
+        public string code { get; set; }
+
+        [JsonProperty("name")]
+        public string name { get; set; }
+
+        [JsonProperty("avatar")]
+        public string avatar { get; set; }
     }
 }

@@ -35,5 +35,17 @@
     <Setting Name="NewFeedbackBy" Type="System.String" Scope="User">
       <Value Profile="(Default)">100000000000</Value>
     </Setting>
+    <Setting Name="daDelay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="daLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="daPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="daTokens" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

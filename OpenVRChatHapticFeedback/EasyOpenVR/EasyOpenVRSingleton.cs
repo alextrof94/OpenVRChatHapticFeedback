@@ -840,10 +840,14 @@ namespace BOLL7708
         public uint EnqueueNotification(ulong overlayHandle, EVRNotificationType type, string message, EVRNotificationStyle style, NotificationBitmap_t bitmap)
         {
             uint id = 0;
-            while (id == 0 || _notifications.Contains(id)) id = (uint)_rnd.Next(); // Not sure why we do this
-            var error = OpenVR.Notifications.CreateNotification(overlayHandle, 0, type, message, style, ref bitmap, ref id);
-            DebugLog(error);
-            _notifications.Add(id);
+            try
+            {
+                while (id == 0 || _notifications.Contains(id)) id = (uint)_rnd.Next(); // Not sure why we do this
+                var error = OpenVR.Notifications.CreateNotification(overlayHandle, 0, type, message, style, ref bitmap, ref id);
+                DebugLog(error);
+                _notifications.Add(id);
+            }
+            catch { }
             return id;
         }
 

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenVRChatHapticFeedback"
         mc:Ignorable="d"
-        Title="twitch.tv/GoodVrGames - OpenVRChatHapticFeedback" Height="559.534" Width="756.962" StateChanged="Window_StateChanged" Icon="resources/logo.ico" PreviewKeyDown="Window_PreviewKeyDown" PreviewKeyUp="Window_PreviewKeyUp" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="twitch.tv/GoodVrGames - OpenVRChatHapticFeedback" Height="559.534" Width="855.962" StateChanged="Window_StateChanged" Icon="resources/logo.ico" PreviewKeyDown="Window_PreviewKeyDown" PreviewKeyUp="Window_PreviewKeyUp" Loaded="Window_Loaded" Closing="Window_Closing">
 
     <Grid Margin="0,0,0,0">
-        <GroupBox x:Name="GbSettings" Header="Настройки приложения" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" DockPanel.Dock="Left" Background="AliceBlue" Height="110" Width="251">
+        <GroupBox x:Name="GbSettings" Header="Настройки приложения" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="AliceBlue" Height="110" Width="251">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <CheckBox x:Name="CheckBox_Minimize" Margin="5" Focusable="False" Content="Скрывать при запуске" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="CheckBox_Minimize_Checked" Unchecked="CheckBox_Minimize_Checked"/>
@@ -27,7 +27,7 @@
                 <Button x:Name="ButtonLanguage" Content="Switch to english" Click="ButtonLanguage_Click" />
             </StackPanel>
         </GroupBox>
-        <GroupBox x:Name="GbStatus" Header="Статус" Margin="266,10,0,0" DockPanel.Dock="Left" Background="WhiteSmoke" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left" Width="228">
+        <GroupBox x:Name="GbStatus" Header="Статус" Margin="266,10,0,0" Background="WhiteSmoke" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left" Width="228">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label x:Name="LabelStatus" Content="Статус OpenVR:" VerticalAlignment="Center"/>
@@ -40,31 +40,32 @@
                 <StackPanel Orientation="Horizontal" Margin="5,0,5,5"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox x:Name="GbLog" Header="Лог" Margin="499,10,10,0" DockPanel.Dock="Left" Height="110" VerticalAlignment="Top">
+        <GroupBox x:Name="GbLog" Header="Лог" Margin="499,10,10,0" Height="110" VerticalAlignment="Top">
             <Grid>
                 <TextBox Margin="5,30,5,5" x:Name="TextBox_Log" IsEnabled="False"/>
-                <CheckBox x:Name="cbShowMessages" Content="Показать сообщения в логе" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="cbShowMessages" Content="Показывать сообщения" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="cbShowDa" Content="Показать запросы к DA" HorizontalAlignment="Left" Margin="166,10,0,0" VerticalAlignment="Top" Width="151"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="GbTwitch" Header="Twitch Настройки" Height="235" VerticalAlignment="Top" Margin="10,125,0,0" HorizontalAlignment="Left" Width="729">
+        <GroupBox x:Name="GbTwitch" Header="Twitch Настройки" Height="235" VerticalAlignment="Top" Margin="10,125,245,0" Grid.RowSpan="2">
             <Grid Margin="0,0,0,0">
                 <Label x:Name="LabelChannelName" Content="Название канала" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TextBoxChannelName" Height="23" Margin="118,10,0,0" TextWrapping="Wrap" Text="goodvrgames" VerticalAlignment="Top" TextChanged="TextBoxChannelName_TextChanged" HorizontalAlignment="Left" Width="129"/>
-                <ComboBox x:Name="ComboBoxWhichController" Margin="118,38,272,0" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="ComboBoxWhichController_SelectionChanged">
+                <TextBox x:Name="TextBoxChannelName" Height="23" Margin="118,10,323,0" TextWrapping="Wrap" Text="goodvrgames" VerticalAlignment="Top" TextChanged="TextBoxChannelName_TextChanged"/>
+                <ComboBox x:Name="ComboBoxWhichController" Margin="118,38,223,0" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="ComboBoxWhichController_SelectionChanged">
                     <ComboBoxItem Content="Левый"/>
                     <ComboBoxItem Content="Правый"/>
                     <ComboBoxItem Content="Оба"/>
                 </ComboBox>
                 <Label x:Name="LabelWhichController" Content="На контроллере" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="TwitchTestButton" Content="Тест оповещения (может не работать)" Margin="10,168,272,10" Click="TwitchTestButton_Click"/>
-                <ComboBox x:Name="ComboBoxFeedbackType" Margin="118,65,370,0" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="ComboBoxFeedbackType_SelectionChanged">
+                <Button x:Name="TwitchTestButton" Content="Тест оповещения (может не работать на квестах)" Margin="10,168,223,10" Click="TwitchTestButton_Click"/>
+                <ComboBox x:Name="ComboBoxFeedbackType" Margin="118,65,323,0" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="ComboBoxFeedbackType_SelectionChanged">
                     <ComboBoxItem Content="бз-бз бз-бз бз-бз"/>
                     <ComboBoxItem Content="бз бз бз"/>
                     <ComboBoxItem Content="бз"/>
                 </ComboBox>
                 <Label x:Name="LabelFeedbackType" Content="Тип оповещения" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="ButtonConnect" Content="Сохранить и подсоединиться" HorizontalAlignment="Right" Margin="0,10,272,0" VerticalAlignment="Top" Width="193" Height="23" IsEnabled="False" Click="ButtonConnect_Click" ToolTip="При запуске приложения присоединение происходит автоматически"/>
-                <GroupBox x:Name="GroupBoxFeedbackBy" Header="Оповещать по" Margin="450,0,10,10">
+                <Button x:Name="ButtonConnect" Content="Сохранить" HorizontalAlignment="Right" Margin="0,10,223,0" VerticalAlignment="Top" Width="93" Height="23" IsEnabled="False" Click="ButtonConnect_Click" ToolTip="При запуске приложения присоединение происходит автоматически"/>
+                <GroupBox x:Name="GroupBoxFeedbackBy" Header="Оповещать по" Margin="0,0,0,10" HorizontalAlignment="Right" Width="218">
                     <Grid>
                         <CheckBox x:Name="CheckBoxAll" Content="Все сообщения" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="CheckBoxMessage_Checked" IsChecked="True" Unchecked="CheckBoxMessage_Checked"/>
                         <CheckBox x:Name="CheckBoxFirst" Content="Первые сообщения" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Checked="CheckBoxMessage_Checked" Unchecked="CheckBoxMessage_Checked"/>
@@ -79,10 +80,10 @@
                         <CheckBox x:Name="CheckBoxCmd" Content="!команды" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Checked="CheckBoxMessage_Checked" Unchecked="CheckBoxMessage_Checked"/>
                     </Grid>
                 </GroupBox>
-                <Button x:Name="ButtonOpenJson" Content="Открыть JSON" HorizontalAlignment="Left" Margin="352,65,0,0" VerticalAlignment="Top" Width="93" Height="22" Click="ButtonOpenJson_Click"/>
+                <Button x:Name="ButtonOpenJson" Content="Открыть JSON" HorizontalAlignment="Right" Margin="0,65,223,0" VerticalAlignment="Top" Width="93" Height="22" Click="ButtonOpenJson_Click"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="GbAbout" Header="О приложении" Height="154" Margin="10,365,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="729">
+        <GroupBox x:Name="GbAbout" Header="О приложении" Height="154" Margin="10,365,10,0" VerticalAlignment="Top">
             <StackPanel Margin="0,0,-2,0">
                 <TextBlock x:Name="tb1" TextWrapping="Wrap" Text="Приложение создано автором канала на Twitch: GoodVrGames"/>
                 <TextBlock x:Name="tb2" TextWrapping="Wrap" Text="Оно полностью бесплатно, но я буду очень благодарен, если мой канал вырастет благодаря тебе! Поэтому прошу сообщить своим зрителям о моем канале."/>
@@ -90,6 +91,25 @@
                 <TextBlock x:Name="tb4" TextWrapping="Wrap" Text="Также мы можем скооперироваться с тобой. Такое я поддерживаю, но я не люблю мат &quot;через слово&quot;. Если не замечал за собой излишнего сквернословия - пиши, не стесняйся, даже если мой канал вырос до миллиона подписчиков (лол, сейчас их 20)."/>
 
             </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="gbDa" Header="DonationAlerts в Steam оповещениях" Height="235" Margin="0,125,10,0" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Right" Width="230">
+            <Grid Margin="0,0,-2,-2" >
+                <Button x:Name="BuOpenSite" Content="Открыть сайт" Margin="10,39,10,0" VerticalAlignment="Top" Click="OpenSiteButton_Click"/>
+                <TextBox x:Name="tbDaLogin" Height="22" Margin="66,68,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <Label Content="Логин" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
+                <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="buDaAuth" Content="Войти" Margin="10,126,10,0" VerticalAlignment="Top" Height="24" Click="buDaAuth_Click"/>
+                <StackPanel Margin="10,155,10,10">
+                    <TextBlock TextWrapping="Wrap" Text="Сначала надо войти в виджет на сайте, после чего авторизоваться с учеткой сайта в приложении"/>
+                </StackPanel>
+                <ComboBox x:Name="cbDaDelay" Margin="68,10,10,0" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="cbDaDelay_SelectionChanged">
+                    <ComboBoxItem Content="Не использовать"/>
+                    <ComboBoxItem Content="Каждые 5 сек"/>
+                    <ComboBoxItem Content="Каждые 60 секунд"/>
+                </ComboBox>
+                <Label Content="Частота" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top"/>
+                <PasswordBox x:Name="tbDaPassword" Margin="66,95,12,0" VerticalAlignment="Top" Height="26"/>
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>
