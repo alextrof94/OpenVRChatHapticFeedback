@@ -27,6 +27,6 @@ I understand english text, so you can also visit my channel and ask me anything.
 Also you can customize haptic-template by changing "HapticAnimations.json" in folder with app.
 
 ## Donation Alerts Support
-Теперь можно добавить вывод в шлем в виде оповещений донаты из DA. 
+Теперь можно добавить вывод донатов из DA в шлем в виде оповещений. 
 
 Сперва надо зарегистрироваться на моем сайте, затем ввести логин-пароль в приложении и нажать "Войти!". Выберите время обновления данных из DA в выпадающем списке.
