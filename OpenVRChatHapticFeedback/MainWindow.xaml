@@ -42,9 +42,12 @@
         </GroupBox>
         <GroupBox x:Name="GbLog" Header="Лог" Margin="499,10,10,0" Height="110" VerticalAlignment="Top">
             <Grid>
-                <TextBox Margin="5,30,5,5" x:Name="TextBox_Log" IsEnabled="False"/>
+                <TextBox Margin="166,30,10,5" x:Name="TextBox_Log" IsEnabled="False"/>
                 <CheckBox x:Name="cbShowMessages" Content="Показывать сообщения" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <CheckBox x:Name="cbShowDa" Content="Показать запросы к DA" HorizontalAlignment="Left" Margin="166,10,0,0" VerticalAlignment="Top" Width="151"/>
+                <ListBox x:Name="lbDonates" HorizontalAlignment="Left" Height="52" Margin="10,30,0,0" VerticalAlignment="Top" Width="151">
+                    <ListBoxItem Content="Здесь будут донаты"/>
+                </ListBox>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="GbTwitch" Header="Twitch Настройки" Height="235" VerticalAlignment="Top" Margin="10,125,245,0" Grid.RowSpan="2">

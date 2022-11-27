@@ -538,6 +538,8 @@ namespace OpenVRChatHapticFeedback
                 tb4.Text = "";
 
                 GbLog.Header = "Log";
+                TextBox_Log.Margin = new Thickness(10, 30, 10, 5);
+                lbDonates.Visibility = Visibility.Hidden;
                 cbShowMessages.Content = "Show messages in log";
 
                 var sel = ComboBoxWhichController.SelectedIndex;
@@ -594,6 +596,8 @@ namespace OpenVRChatHapticFeedback
                 tb4.Text = "Также мы можем скооперироваться с тобой. Такое я поддерживаю, но я не люблю мат \"через слово\". Если не замечал за собой излишнего сквернословия - пиши, не стесняйся, даже если мой канал вырос до миллиона подписчиков (лол, сейчас их 9).";
 
                 GbLog.Header = "Лог";
+                TextBox_Log.Margin = new Thickness(166, 30, 10, 5);
+                lbDonates.Visibility = Visibility.Visible;
                 cbShowMessages.Content = "Показывать сообщения";
 
                 var sel = ComboBoxWhichController.SelectedIndex;
@@ -942,6 +946,7 @@ namespace OpenVRChatHapticFeedback
 		{
             string res = $"{donate.username} ({donate.amount} {donate.currency}): {donate.message}";
             WriteToLogDa(res, true);
+            lbDonates.Items.Insert(0, res);
             _controller.ShowNotification(res);
         }
 
