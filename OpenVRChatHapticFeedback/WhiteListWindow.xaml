@@ -1,0 +1,16 @@
+﻿<Window x:Class="OpenVRChatHapticFeedback.WhiteListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenVRChatHapticFeedback"
+        mc:Ignorable="d"
+        Title="WhiteListWindow" Height="327.105" Width="240.965" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="BuDelete" Content="Удалить" Margin="10,10,0,0" Click="BuDelete_Click" HorizontalAlignment="Left" Width="88" Height="23" VerticalAlignment="Top"/>
+        <ListBox x:Name="LbNicks" Margin="10,38"/>
+        <TextBox x:Name="TbNew" Height="23" Margin="10,0,103,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Text="GoodVrGames"/>
+        <Button x:Name="BuAddNick" Content="Добавить" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="88" Height="23" Click="BuAddNick_Click"/>
+
+    </Grid>
+</Window>

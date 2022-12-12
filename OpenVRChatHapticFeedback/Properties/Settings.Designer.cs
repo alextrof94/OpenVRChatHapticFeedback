@@ -202,5 +202,17 @@ namespace OpenVRChatHapticFeedback.Properties {
                 this["daTokens"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string whitelistNicks {
+            get {
+                return ((string)(this["whitelistNicks"]));
+            }
+            set {
+                this["whitelistNicks"] = value;
+            }
+        }
     }
 }

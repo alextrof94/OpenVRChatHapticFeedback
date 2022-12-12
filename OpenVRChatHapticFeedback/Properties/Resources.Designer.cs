@@ -100,7 +100,7 @@ namespace OpenVRChatHapticFeedback.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на v1.4.1.
+        ///   Ищет локализованную строку, похожую на v1.5.
         /// </summary>
         public static string Version {
             get {

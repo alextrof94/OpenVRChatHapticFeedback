@@ -164,7 +164,7 @@ namespace OpenVRChatHapticFeedback
         #region Settings
         public enum Setting
         {
-            Minimize, Tray, Notification, Haptic, ExitWithSteam, FeedbackType, WhichController, ChannelName, FeedbackBy, English, NewFeedbackBy, daDelay, daLogin, daPassword, daTokens
+            Minimize, Tray, Notification, Haptic, ExitWithSteam, FeedbackType, WhichController, ChannelName, FeedbackBy, English, NewFeedbackBy, daDelay, daLogin, daPassword, daTokens, WhiteListNicks
         }
 
         private static readonly Properties.Settings p = Properties.Settings.Default;

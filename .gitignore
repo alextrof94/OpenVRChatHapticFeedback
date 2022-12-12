@@ -213,3 +213,20 @@ OpenVRChatHapticFeedback/bin/Release/app.publish/Application Files/OpenVRChatHap
 OpenVRChatHapticFeedback/bin/Release/app.publish/Application Files/OpenVRChatHapticFeedback_1_4_1_15/OpenVRChatHapticFeedback.exe.config.deploy
 OpenVRChatHapticFeedback/bin/Release/app.publish/Application Files/OpenVRChatHapticFeedback_1_4_1_15/ChatHapticFeedback.ico.deploy
 .vs/OpenVRChatHapticFeedback/v16/.suo
+.vs/OpenVRChatHapticFeedback/v16/.suo
+OpenVRChatHapticFeedback/bin/Release/app.publish/Application Files/OpenVRChatHapticFeedback_1_5_0_17/ChatHapticFeedback.ico.deploy
+OpenVRChatHapticFeedback/bin/Release/app.publish/Application Files/OpenVRChatHapticFeedback_1_5_0_17/OpenVRChatHapticFeedback.exe.config.deploy
+OpenVRChatHapticFeedback/bin/Release/app.publish/Application Files/OpenVRChatHapticFeedback_1_5_0_17/OpenVRChatHapticFeedback.exe.deploy
+OpenVRChatHapticFeedback/bin/Release/app.publish/Application Files/OpenVRChatHapticFeedback_1_5_0_17/OpenVRChatHapticFeedback.exe.manifest
+OpenVRChatHapticFeedback/obj/Debug/WhiteListWindow.baml
+OpenVRChatHapticFeedback/obj/Debug/WhiteListWindow.g.cs
+OpenVRChatHapticFeedback/obj/Debug/WhiteListWindow.g.i.cs
+OpenVRChatHapticFeedback/obj/Release/DesignTimeResolveAssemblyReferences.cache
+OpenVRChatHapticFeedback/obj/Release/WhiteListWindow.baml
+OpenVRChatHapticFeedback/obj/Release/WhiteListWindow.g.cs
+OpenVRChatHapticFeedback/obj/Release/WhiteListWindow.g.i.cs
+*.deploy
+*.application
+*.manifest
+*.cache
+OpenVRChatHapticFeedback/obj/Release/DesignTimeResolveAssemblyReferences.cache

@@ -42,6 +42,8 @@ namespace OpenVRChatHapticFeedback
 
         public TwitchLib.Client.TwitchClient client;
 
+        List<string> whiteListNicks = new List<string>();
+
         #region DAparams
         private string myUrl = "https://turnlive.ru/da/";
         string address = "https://www.donationalerts.com/";
@@ -252,6 +254,9 @@ namespace OpenVRChatHapticFeedback
                 if (e.ChatMessage.IsSubscriber && (all || CheckBoxSubscriber.IsChecked.Value))
                     needStartHaptics = true;
 
+                if ((all || cbWhiteList.IsChecked.Value) && whiteListNicks.Contains(e.ChatMessage.Username))
+                    needStartHaptics = true;
+
                 if (e.ChatMessage.IsBroadcaster)
                     needStartHaptics = true; // for easy test
 
@@ -425,6 +430,10 @@ namespace OpenVRChatHapticFeedback
             cbDaDelay.SelectedIndex = (int)MainModel.LoadSetting(MainModel.Setting.daDelay);
             tbDaLogin.Text = (string)MainModel.LoadSetting(MainModel.Setting.daLogin);
             tbDaPassword.Password = (string)MainModel.LoadSetting(MainModel.Setting.daPassword);
+            if (((string)MainModel.LoadSetting(MainModel.Setting.WhiteListNicks)).Length > 0)
+                whiteListNicks.AddRange(((string)MainModel.LoadSetting(MainModel.Setting.WhiteListNicks)).Split(','));
+            else
+                whiteListNicks.Add("GoodVrGames");
 
             string tokens = (string)MainModel.LoadSetting(MainModel.Setting.daTokens);
             try
@@ -445,6 +454,8 @@ namespace OpenVRChatHapticFeedback
             } catch { }
 
             var val = (string)MainModel.LoadSetting(MainModel.Setting.NewFeedbackBy);
+            while (val.Length < 20)
+                val += "0";
             CheckBoxAll.IsChecked = val[0] == '1';
             CheckBoxCmd.IsChecked = val[1] == '1';
             CheckBoxFirst.IsChecked = val[2] == '1';
@@ -456,6 +467,7 @@ namespace OpenVRChatHapticFeedback
             CheckBoxSubscriber.IsChecked = val[8] == '1';
             CheckBoxTurbo.IsChecked = val[9] == '1';
             CheckBoxVip.IsChecked = val[10] == '1';
+            CheckBoxVip.IsChecked = val[11] == '1';
 
             CheckBoxCmd.IsEnabled = !CheckBoxAll.IsChecked.Value;
             CheckBoxFirst.IsEnabled = !CheckBoxAll.IsChecked.Value;
@@ -467,6 +479,7 @@ namespace OpenVRChatHapticFeedback
             CheckBoxSubscriber.IsEnabled = !CheckBoxAll.IsChecked.Value;
             CheckBoxTurbo.IsEnabled = !CheckBoxAll.IsChecked.Value;
             CheckBoxVip.IsEnabled = !CheckBoxAll.IsChecked.Value;
+            cbWhiteList.IsEnabled = !CheckBoxAll.IsChecked.Value;
 
             try
             {
@@ -561,6 +574,8 @@ namespace OpenVRChatHapticFeedback
                 CheckBoxSubscriber.Content = "By subscriber";
                 CheckBoxTurbo.Content = "By Turbo";
                 CheckBoxVip.Content = "By VIP";
+                cbWhiteList.Content = "By Whitelist";
+                buWhiteList.Content = "Edit";
 
                 gbDa.Visibility = Visibility.Hidden;
                 cbShowDa.Visibility = Visibility.Hidden;
@@ -619,6 +634,8 @@ namespace OpenVRChatHapticFeedback
                 CheckBoxSubscriber.Content = "От подписчиков";
                 CheckBoxTurbo.Content = "От турбо";
                 CheckBoxVip.Content = "От ВИП";
+                cbWhiteList.Content = "Из белого списка";
+                buWhiteList.Content = "Редактировать";
 
                 gbDa.Visibility = Visibility.Visible;
                 cbShowDa.Visibility = Visibility.Visible;
@@ -746,6 +763,7 @@ namespace OpenVRChatHapticFeedback
                 CheckBoxSubscriber.IsEnabled = !ch.IsChecked.Value;
                 CheckBoxTurbo.IsEnabled = !ch.IsChecked.Value;
                 CheckBoxVip.IsEnabled = !ch.IsChecked.Value;
+                cbWhiteList.IsEnabled = !ch.IsChecked.Value;
             }
 
             int index = 0;
@@ -762,6 +780,7 @@ namespace OpenVRChatHapticFeedback
                 case nameof(CheckBoxSubscriber): index = 8; break;
                 case nameof(CheckBoxTurbo): index = 9; break;
                 case nameof(CheckBoxVip): index = 10; break;
+                case nameof(cbWhiteList): index = 11; break;
             }
 
             var val = ((string)MainModel.LoadSetting(MainModel.Setting.NewFeedbackBy)).ToCharArray();
@@ -964,8 +983,17 @@ namespace OpenVRChatHapticFeedback
         }
 
 
-		#endregion
+        #endregion
 
+        private void buWhiteList_Click(object sender, RoutedEventArgs e)
+        {
+            WhiteListWindow wlw = new WhiteListWindow();
+            wlw.Nicks = whiteListNicks;
+            wlw.IsEnglish = (bool)MainModel.LoadSetting(MainModel.Setting.English);
+            wlw.ShowDialog();
+            whiteListNicks = wlw.Nicks;
+            MainModel.UpdateSetting(MainModel.Setting.WhiteListNicks, String.Join(",", whiteListNicks));
+        }
 	}
 
 	[Serializable]

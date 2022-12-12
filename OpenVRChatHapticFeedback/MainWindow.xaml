@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenVRChatHapticFeedback"
         mc:Ignorable="d"
-        Title="twitch.tv/GoodVrGames - OpenVRChatHapticFeedback" Height="559.534" Width="855.962" StateChanged="Window_StateChanged" Icon="resources/logo.ico" PreviewKeyDown="Window_PreviewKeyDown" PreviewKeyUp="Window_PreviewKeyUp" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="twitch.tv/GoodVrGames - OpenVRChatHapticFeedback" Height="591.534" Width="855.962" StateChanged="Window_StateChanged" Icon="resources/logo.ico" PreviewKeyDown="Window_PreviewKeyDown" PreviewKeyUp="Window_PreviewKeyUp" Loaded="Window_Loaded" Closing="Window_Closing">
 
     <Grid Margin="0,0,0,0">
         <GroupBox x:Name="GbSettings" Header="Настройки приложения" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="AliceBlue" Height="110" Width="251">
@@ -50,7 +50,7 @@
                 </ListBox>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="GbTwitch" Header="Twitch Настройки" Height="235" VerticalAlignment="Top" Margin="10,125,245,0" Grid.RowSpan="2">
+        <GroupBox x:Name="GbTwitch" Header="Twitch Настройки" Height="267" VerticalAlignment="Top" Margin="10,125,245,0">
             <Grid Margin="0,0,0,0">
                 <Label x:Name="LabelChannelName" Content="Название канала" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="TextBoxChannelName" Height="23" Margin="118,10,323,0" TextWrapping="Wrap" Text="goodvrgames" VerticalAlignment="Top" TextChanged="TextBoxChannelName_TextChanged"/>
@@ -81,12 +81,14 @@
                         <CheckBox x:Name="CheckBoxHey" Content="!hey" HorizontalAlignment="Left" Margin="148,90,0,0" VerticalAlignment="Top" Checked="CheckBoxMessage_Checked" Unchecked="CheckBoxMessage_Checked"/>
                         <CheckBox x:Name="CheckBoxSubmodeSkipped" Content="Сообщения в сабмоде за баллы" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Checked="CheckBoxMessage_Checked" Unchecked="CheckBoxMessage_Checked"/>
                         <CheckBox x:Name="CheckBoxCmd" Content="!команды" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Checked="CheckBoxMessage_Checked" Unchecked="CheckBoxMessage_Checked"/>
+                        <CheckBox x:Name="cbWhiteList" Content="Белый список" HorizontalAlignment="Right" Margin="0,170,10,0" VerticalAlignment="Top" Width="186"/>
+                        <Button x:Name="buWhiteList" Content="Редактировать" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top" Width="96" Click="buWhiteList_Click"/>
                     </Grid>
                 </GroupBox>
                 <Button x:Name="ButtonOpenJson" Content="Открыть JSON" HorizontalAlignment="Right" Margin="0,65,223,0" VerticalAlignment="Top" Width="93" Height="22" Click="ButtonOpenJson_Click"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="GbAbout" Header="О приложении" Height="154" Margin="10,365,10,0" VerticalAlignment="Top">
+        <GroupBox x:Name="GbAbout" Header="О приложении" Height="154" Margin="10,397,10,0" VerticalAlignment="Top">
             <StackPanel Margin="0,0,-2,0">
                 <TextBlock x:Name="tb1" TextWrapping="Wrap" Text="Приложение создано автором канала на Twitch: GoodVrGames"/>
                 <TextBlock x:Name="tb2" TextWrapping="Wrap" Text="Оно полностью бесплатно, но я буду очень благодарен, если мой канал вырастет благодаря тебе! Поэтому прошу сообщить своим зрителям о моем канале."/>
@@ -95,7 +97,7 @@
 
             </StackPanel>
         </GroupBox>
-        <GroupBox x:Name="gbDa" Header="DonationAlerts в Steam оповещениях" Height="235" Margin="0,125,10,0" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Right" Width="230">
+        <GroupBox x:Name="gbDa" Header="DonationAlerts в Steam оповещениях" Height="267" Margin="0,125,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="230">
             <Grid Margin="0,0,-2,-2" >
                 <Button x:Name="BuOpenSite" Content="Открыть сайт" Margin="10,39,10,0" VerticalAlignment="Top" Click="OpenSiteButton_Click"/>
                 <TextBox x:Name="tbDaLogin" Height="22" Margin="66,68,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
