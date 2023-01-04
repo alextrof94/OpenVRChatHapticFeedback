@@ -221,10 +221,10 @@ namespace OpenVRChatHapticFeedback
                 if (e.ChatMessage.IsMe)
                     return;
 
-                if (all)
+                if (all && e.ChatMessage.Message[0] != '!')
                     needStartHaptics = true;
 
-                if (e.ChatMessage.Message[0] == '!' && (all || CheckBoxCmd.IsChecked.Value))
+                if (e.ChatMessage.Message[0] == '!' && CheckBoxCmd.IsChecked.Value)
                     needStartHaptics = true;
 
                 if (e.ChatMessage.Message == "!hey" && (all || CheckBoxHey.IsChecked.Value))
@@ -469,7 +469,6 @@ namespace OpenVRChatHapticFeedback
             CheckBoxVip.IsChecked = val[10] == '1';
             CheckBoxVip.IsChecked = val[11] == '1';
 
-            CheckBoxCmd.IsEnabled = !CheckBoxAll.IsChecked.Value;
             CheckBoxFirst.IsEnabled = !CheckBoxAll.IsChecked.Value;
             CheckBoxHey.IsEnabled = !CheckBoxAll.IsChecked.Value;
             CheckBoxHighlighted.IsEnabled = !CheckBoxAll.IsChecked.Value;
@@ -753,7 +752,6 @@ namespace OpenVRChatHapticFeedback
 
             if (ch.Name == nameof(CheckBoxAll))
             {
-                CheckBoxCmd.IsEnabled = !ch.IsChecked.Value;
                 CheckBoxFirst.IsEnabled = !ch.IsChecked.Value;
                 CheckBoxHey.IsEnabled = !ch.IsChecked.Value;
                 CheckBoxHighlighted.IsEnabled = !ch.IsChecked.Value;
