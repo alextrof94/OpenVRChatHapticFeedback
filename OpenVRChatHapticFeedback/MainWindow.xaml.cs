@@ -217,6 +217,7 @@ namespace OpenVRChatHapticFeedback
                 var channel_name = (string)TextBoxChannelName.Text;
 
                 bool all = CheckBoxAll.IsChecked.Value;
+                bool isCmd = false;
 
                 if (e.ChatMessage.IsMe)
                     return;
@@ -225,43 +226,49 @@ namespace OpenVRChatHapticFeedback
                     needStartHaptics = true;
 
                 if (e.ChatMessage.Message[0] == '!' && CheckBoxCmd.IsChecked.Value)
+                {
                     needStartHaptics = true;
+                    isCmd = true;
+                }
 
                 if (e.ChatMessage.Message == "!hey" && (all || CheckBoxHey.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if (e.ChatMessage.IsFirstMessage && (all || CheckBoxFirst.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if (e.ChatMessage.IsHighlighted && (all || CheckBoxHighlighted.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if (e.ChatMessage.IsSkippingSubMode && (all || CheckBoxSubmodeSkipped.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if (e.ChatMessage.IsTurbo && (all || CheckBoxTurbo.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if (e.ChatMessage.IsVip && (all || CheckBoxVip.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if (e.ChatMessage.IsPartner && (all || CheckBoxPartner.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if (e.ChatMessage.IsModerator && (all || CheckBoxModer.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if (e.ChatMessage.IsSubscriber && (all || CheckBoxSubscriber.IsChecked.Value))
-                    needStartHaptics = true;
-
-                if ((all || cbWhiteList.IsChecked.Value) && whiteListNicks.Contains(e.ChatMessage.Username))
                     needStartHaptics = true;
 
                 if (e.ChatMessage.IsBroadcaster)
                     needStartHaptics = true; // for easy test
 
-                if (e.ChatMessage.IsStaff)
-                    needStartHaptics = true; // is stuff by twitch?
+                if (!isCmd)
+                {
+                    if (e.ChatMessage.IsFirstMessage && (all || CheckBoxFirst.IsChecked.Value))
+                        needStartHaptics = true;
+
+                    if (e.ChatMessage.IsHighlighted && (all || CheckBoxHighlighted.IsChecked.Value))
+                        needStartHaptics = true;
+
+                    if (e.ChatMessage.IsSkippingSubMode && (all || CheckBoxSubmodeSkipped.IsChecked.Value))
+                        needStartHaptics = true;
+
+                    if (e.ChatMessage.IsTurbo && (all || CheckBoxTurbo.IsChecked.Value))
+                        needStartHaptics = true;
+
+                    if (e.ChatMessage.IsVip && (all || CheckBoxVip.IsChecked.Value))
+                        needStartHaptics = true;
+
+                    if (e.ChatMessage.IsPartner && (all || CheckBoxPartner.IsChecked.Value))
+                        needStartHaptics = true;
+
+                    if (e.ChatMessage.IsModerator && (all || CheckBoxModer.IsChecked.Value))
+                        needStartHaptics = true;
+
+                    if (e.ChatMessage.IsSubscriber && (all || CheckBoxSubscriber.IsChecked.Value))
+                        needStartHaptics = true;
+
+                    if ((all || cbWhiteList.IsChecked.Value) && whiteListNicks.Contains(e.ChatMessage.Username))
+                        needStartHaptics = true;
+
+                    if (e.ChatMessage.IsStaff)
+                        needStartHaptics = true; // is stuff by twitch?
+                }
 
                 if (needStartHaptics)
                     _controller.PlayHaptic(animations[ComboBoxFeedbackType.SelectedIndex]);
