@@ -39,3 +39,7 @@ Also you can customize haptic-template by changing "HapticAnimations.json" in fo
 Теперь можно добавить вывод донатов из DA в шлем в виде оповещений. 
 
 Сперва надо зарегистрироваться на [моем сайте](https://turnlive.ru/da/), авторизоваться в виджете "OpenVRDonationAlertsToSteam", затем ввести логин-пароль с моего сайта в приложении и нажать "Войти!". Выберите время обновления данных из DA в выпадающем списке ("не использовать" или "каждые 5/60 секунд").
+
+## Thanks 
+[https://github.com/Dteyn](Dteyn)
+[https://github.com/Dteyn/HapticAnimationPreview](Sound preview app for vibro-templates by Dteyn)
