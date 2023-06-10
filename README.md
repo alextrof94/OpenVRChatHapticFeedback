@@ -18,14 +18,14 @@ It will be autostart with SteamVR (and minimizing to tray). You can disable it f
 App for haptic (vibration) notifications on new messages in twitch chat. 
 <br>Приложение для вибрационного отклика на новые сообщения в чате Twitch.
 
-It can "bz-bz bz-bz bz-bz" or "bz bz bzz" or "bzzzzz" on left controller, right or both.
+It can "bz-bz bz-bz bz-bz" or "bz bz bzz" or "bzzzzz" on left controller, right or both. In v1.5.3 more templated by Dteyn has been added to app.
 <br>Может вибрировать по шаблонам на левом, правом или обоих контроллерах.
 
-You can setup for notifications only by *subscribers*, *moderators* or special "!hey" *command*.
-<br>Можно настроить, чтобы вибрировало только при сообщениях от определенных людей, подписчики, модераторы и т.п.
+You can setup for notifications only by *subscribers*, *moderators* or special "!hey" *command*. Also it's have Ignore list.
+<br>Можно настроить, чтобы вибрировало только при сообщениях от определенных людей, подписчики, модераторы и т.п. Также есть список для игнора пользователей (для ботов, например).
 
-Created by russian guy with twitch channel: *GoodVrGames*.
-<br>У меня есть канал на Twitch.
+Created by russian guy with twitch channel: **GoodVrGames**.
+<br>У меня есть канал на Twitch - **GoodVrGames**.
 
 It's free. If you want to thank me, just left link to app and/or channel if asked about it.
 <br>Оно бесплатно. Если хотите поблагодарить - просто оставьте ссылку на приложение и/или канал, если спросят об этом. Также можно мне задонатить в [DonationAlerts](https://www.donationalerts.com/r/goodvrgames) на публикацию этого приложения в Steam (там оно тоже будет бесплатным, но стоимость публикации в Steam - 100$, с учетом нынешнего курса и всяких комиссий - 8к рублей).
