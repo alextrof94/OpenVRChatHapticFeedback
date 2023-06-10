@@ -9,7 +9,7 @@ You can download app in [releases](https://github.com/alextrof94/OpenVRChatHapti
 4. Switch language to english, setup channel name and other options. <br>Введите название канала и выберите остальные опции.
 
 For updating you propably need remove app first. 
-Для обновления возможно потребуется удалить приложение.
+<br>Для обновления возможно потребуется удалить приложение.
 
 It will be autostart with SteamVR (and minimizing to tray). You can disable it from SteamVR settings. Maybe first time you need start app after SteamVR for registering in it. 
 <br>Приложение будет запускаться автоматически со SteamVR, это можно отключить и включить в настройках самого SteamVR. Возможно, в первый раз потребуется запустить приложение после запуска SteamVR для регистрации в нем.
