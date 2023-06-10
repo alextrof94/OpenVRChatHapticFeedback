@@ -41,6 +41,6 @@ Also you can customize haptic-template by changing "HapticAnimations.json" in fo
 Сперва надо зарегистрироваться на [моем сайте](https://turnlive.ru/da/), авторизоваться в виджете "OpenVRDonationAlertsToSteam", затем ввести логин-пароль с моего сайта в приложении и нажать "Войти!". Выберите время обновления данных из DA в выпадающем списке ("не использовать" или "каждые 5/60 секунд").
 
 ## Thanks 
-[https://github.com/Dteyn](Dteyn)
+[Dteyn](https://github.com/Dteyn)
 
-[https://github.com/Dteyn/HapticAnimationPreview](Sound preview app for vibro-templates by Dteyn)
+[Sound preview app for vibro-templates by Dteyn](https://github.com/Dteyn/HapticAnimationPreview)
