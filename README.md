@@ -18,7 +18,7 @@ It will be autostart with SteamVR (and minimizing to tray). You can disable it f
 App for haptic (vibration) notifications on new messages in twitch chat. 
 <br>Приложение для вибрационного отклика на новые сообщения в чате Twitch.
 
-It can "bz-bz bz-bz bz-bz" or "bz bz bzz" or "bzzzzz" on left controller, right or both. In v1.5.3 more templates by Dteyn has been added to app.
+It can "bz-bz bz-bz bz-bz" or "bz bz bzz" or "bzzzzz" on left controller, right or both. In v1.5.3 more templates by **Dteyn** has been added to app.
 <br>Может вибрировать по шаблонам на левом, правом или обоих контроллерах.
 
 You can setup for notifications only by *subscribers*, *moderators* or special "!hey" *command*. Also it's have Ignore list.
