@@ -42,4 +42,5 @@ Also you can customize haptic-template by changing "HapticAnimations.json" in fo
 
 ## Thanks 
 [https://github.com/Dteyn](Dteyn)
+
 [https://github.com/Dteyn/HapticAnimationPreview](Sound preview app for vibro-templates by Dteyn)
